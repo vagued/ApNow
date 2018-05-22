@@ -19,7 +19,7 @@
     </header>
 	<div class = "form">
 		<div class = "container">
-	        <form action = "check-login.php" method = "post">
+	        <form>
 	        	<h1> Login Form </h1>
 
 		        <label for = "username">Username: </label>
@@ -28,24 +28,29 @@
 	        	<label for = "password"> Password: </label>
 	            <input type = "password" placeholder = "Password" required= "" id = "password"><br>
 
+            <div color="orange" id="msg">a</div><br><br>
+
 		        <input type = "submit" value = "LOG IN" onClick = "singup();"><br>
 	       </form>
 	    </div>
 
       <script>
-        function register()
+        function singup()
         {
-          $.post("Insert.php",
+          $.post("../php/login.php",
+    			{POSTusername: document.getElementById('username').value,
+    			  POSTpassword: document.getElementById('password').value
+    	    }, function(reply)
+          {
+            if(reply=="0")
+              $('#msg').html("Invalid credidentials");
+          });
 
-    			{POSTfirstname:document.getElementById('firstname').value,
-    			  POSTlastname:document.getElementById('lastname').value,
-    			  POSTusername: document.getElementById('username').value,
-    			  POSTpassword: document.getElementById('password').value,
-    			  POSTemail: document.getElementById('email').value;
-    	    });
-
-          sessionStorage.login = true;
-    			window.location.href = "Results.html"; //EDITTTTTT
+          if(selectElementById("msg").innerHTML == "")
+          {
+            sessionStorage.login = true;
+      			window.location.href = "homepage.html";
+          }
         }
       </script>
 
