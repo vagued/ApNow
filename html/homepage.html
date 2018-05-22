@@ -1,0 +1,74 @@
+<DOCTYPE! html>
+<html>
+    <head>
+    	<meta charset="UTF-8">
+    	<title>Homepage</title>
+    	<link rel="stylesheet" href="..\css\style.css">
+
+    </head>	
+    <body id = "def">
+    	<header>
+    	   <div class = "navbar">
+                	<a href = "" id = "logo"> <img src = "../logo.png"> </a>
+                	<a href = "login.html" id = "login"> Login </a>
+                	<a href = "signup.html" id = "signup"> Sign Up </a>
+                	<a href = ""> Help! </a>
+					<div id="navbar2"></div>
+           </div> 
+
+    	</header>   
+
+    	<div class="searchbar">
+            <button onclick= "myFunction()" class= "dropbtn"> Choose your destination...</button>
+              <div id = "myDropdown" class="searchbar-content">
+                <a href =""> Athens </a>
+                <a href =""> Thessaloniki </a>
+                <a href =""> Patras </a>
+              </div>
+        </div>
+
+        <script>
+			
+			if(sessionStorage.login == 1)
+			{
+				document.getElementById("login").setAttribute("href", "homepage.html");
+				document.getElementById("login").innerHTML = "Logout";
+				
+				var div = document.getElementById("navbar2");
+				div.innerHTML += '<a href="upload-apartment.html">Upload apartment</a>';
+				
+				sessionStorage.login = 0;
+			}
+			
+			/* When the user clicks on the button, 
+			toggle between hiding and showing the dropdown content */
+			function myFunction() {
+				document.getElementById("myDropdown").classList.toggle("show");
+			}
+
+			// Close the dropdown if the user clicks outside of it
+			window.onclick = function(event) {
+			  if (!event.target.matches('.dropbtn')) {
+
+				var dropdowns = document.getElementsByClassName("dropdown-content");
+				var i;
+				for (i = 0; i < dropdowns.length; i++) {
+				  var openDropdown = dropdowns[i];
+				  if (openDropdown.classList.contains('show')) {
+				  }
+				}
+			}
+			}
+			
+			
+        </script>
+		
+		<div class="footer">
+           <div class="container">
+               <p>&copy; ApNow 2018</p>
+           </div>
+        </div>
+
+               
+    </body>
+</html>
