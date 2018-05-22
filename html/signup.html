@@ -15,38 +15,38 @@
                 	<a href = "signup.html" id = "signup"> Sign Up </a>
                 	<a href = ""> Help! </a>
 					<div id="navbar2"></div>
-           </div> 
+           </div>
 
-    	</header>   
-	
+    	</header>
+
 	<div class = "form">
 	    <div class = "container">
 	        <form action="../php/insert-client.php" method="post" enctype="multipart/form-data">
 			        <h1> JOIN US NOW!</h1>
-			       
+
 			        <label for = "username">Username: </label>
 			        <input type = "text" placeholder = "Username" required = "" id = "username" required><br>
-			        
+
 			        <label for = "password"> Password: </label>
 			        <input type = "password" placeholder = "Password" required = "" id = "password" required><br>
-			        
+
 			        <label for = "firstname"> First Name: </label>
 			        <input type = "text" id = "firstname" placeholder = "Π.χ. Γιώργος" required><br>
-			        
+
 			        <label for = "lastname"> Last Name: </label>
 			        <input id= "lastname" placeholder = "Π.χ. Παπαδόπουλος" required><br>
-			        
+
 			        <label for = "pic">Upload your Pic:</label>
 			        <input type = "file" id = "pic" id = "pic" required><br>
-			        
+
 			        <label for = "email"> Email: </label>
 			        <input  type = "email" pattern = "..*@.*\..{1,}" id = "email" placeholder = "Π.χ. demo@domain.com" required><br>
-			        
+
 			        <input type = "submit" value = "Sign Up" onClick = "register();">
 	        </form>
 	    </div>
-	</div>        
-	
+	</div>
+
 	<script>
 		function register()
 		{
@@ -66,12 +66,14 @@
 			  POSTusername: document.getElementById('username').value,
 			  POSTpassword: document.getElementById('password').value,
 			  POSTemail: document.getElementById('email').value;
-			
-			sessionStorage.login = true;
+
+	    });
+
+      sessionStorage.login = true;
 			window.location.href = "Results.html"; //EDITTTTTT
-		}
-		<!-- } -->
+
 	</script>
+
 	<div class="footer">
            <div class="container">
                <p>&copy; ApNow 2018</p>

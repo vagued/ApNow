@@ -15,30 +15,48 @@
                 	<a href = "signup.html" id = "signup"> Sign Up </a>
                 	<a href = ""> Help! </a>
 					<div id="navbar2"></div>
-           </div> 
-    </header>   
+           </div>
+    </header>
 	<div class = "form">
 		<div class = "container">
 	        <form action = "check-login.php" method = "post">
 	        	<h1> Login Form </h1>
-	        	
+
 		        <label for = "username">Username: </label>
 	        	<input type = "text" placeholder = "Username" required ="" id = "username"><br>
-	        	
+
 	        	<label for = "password"> Password: </label>
 	            <input type = "password" placeholder = "Password" required= "" id = "password"><br>
-	        	
-		        <input type = "submit" value = "LOG IN"><br>
+
+		        <input type = "submit" value = "LOG IN" onClick = "singup();"><br>
 	       </form>
 	    </div>
+
+      <script>
+        function register()
+        {
+          $.post("Insert.php",
+
+    			{POSTfirstname:document.getElementById('firstname').value,
+    			  POSTlastname:document.getElementById('lastname').value,
+    			  POSTusername: document.getElementById('username').value,
+    			  POSTpassword: document.getElementById('password').value,
+    			  POSTemail: document.getElementById('email').value;
+    	    });
+
+          sessionStorage.login = true;
+    			window.location.href = "Results.html"; //EDITTTTTT
+        }
+      </script>
+
+
 	</div>
     <div class="footer">
         <div class="container">
                <p>&copy; ApNow 2018</p>
         </div>
     </div>
-		
+
 </body>
 
 </html>
-  
