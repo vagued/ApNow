@@ -55,13 +55,18 @@ fclose($myfile);
 //Photo upload
 
 $result = db_query("SELECT MAX(clientid) FROM clients");
-$result += 1;
+$ranking = $result + 1;
 
-$target_dir = "../img/clients/" . $result;
+$target_dir = "../img/clients/";
 
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$temp = explode(".", $_FILES["file"]["name"]);
+$newfilename = $ranking . '.' . end($temp);
+
+$target_file = $target_dir . $newfilename;
+
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
