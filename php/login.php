@@ -21,21 +21,21 @@ $row = mysqli_fetch_array($result);
 
 if(empty($row))
 {
-	echo "Invalid credidentials, please try again.";
-	echo "\nReloading...";
-	sleep(2);
+	echo 'Invalid credidentials, please try again.';
+	echo '\nReloading...';
+	// sleep(2);
 	echo '<script>';
 	echo 'window.location.href = "../html/login.html";';
 	echo '</script>';
 }
-
 else
 {
-	echo '<!DOCTYPE html><html><body><script>';
-	echo 'var sessionStorage.idClient = ' . json_encode($row[0]) . ';';
-	echo 'var sessionStorage.firstName = ' . json_encode($row[3]) . ';';
-	echo 'var sessionStorage.lastName = ' . json_encode($row[4]) . ';';
-	echo 'var sessionStorage.email = ' . json_encode($row[5]) . ';';
+	echo '<!DOCTYPE HTML><html><body>Logged in. Redirecting...';
+	echo '<script>';
+	echo 'sessionStorage.idClient = ' . json_encode($row[0]) . ';';
+	echo 'sessionStorage.firstName = ' . json_encode($row[3]) . ';';
+	echo 'sessionStorage.lastName = ' . json_encode($row[4]) . ';';
+	echo 'sessionStorage.email = ' . json_encode($row[5]) . ';';
 	echo 'window.location.href = "../html/homepage.html";';
 	echo '</script></body></html>';
 	// echo "works";
