@@ -15,7 +15,7 @@ body{
 	background-image:url("../img/def.jpg") ;
 }
 
-.form {
+form {
   width:30%;
   margin:60px auto 0;
   position:relative;
@@ -215,6 +215,43 @@ input[type=submit] {
   color: black;
   border-radius: 15px;
 }
+.apartment{
+  padding: 30px;
+  margin: 30px auto;
+  height: 60%;
+  width: 60%;
+  min-width: 240px;
+  text-align: center;
+  background: rgba(10, 30, 50, 0.4) ;
+  border-radius: 2px;
+}
+
+.apartment img {
+  width: 160px;
+  border: 90px;
+  border: 0.5px solid #d0d0d0;
+  margin-bottom: 28px;
+  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  transition: transform 1s;
+}
+
+.apartment h1, .apartment h2 {
+  color: #ddd;
+  text-rendering: optimizeLegibility;
+}
+.apartment h1 {
+  font-family: "Sigmar One", Serif;
+  font-size: 24px;
+  line-height: 26px;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #fff;
+}
+.apartment h2 {
+  font-family: "Passion One", Serif;
+  font-size: 20px;
+  line-height: 22px;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #fff;
 
 
 
