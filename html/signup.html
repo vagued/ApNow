@@ -15,34 +15,34 @@
                 	<a href = "signup.html" id = "signup"> Sign Up </a>
                 	<a href = ""> Help! </a>
 					<div id="navbar2"></div>
-           </div> 
+           </div>
 
-    	</header>   
-	
+    	</header>
+
 	        <form action="../php/insert-client.php" method="post" enctype="multipart/form-data" id = "signup">
 			        <h1> JOIN US NOW!</h1>
-			       
+
 			        <label for = "username">Username: </label>
 			        <input type = "text" placeholder = "Username" id = "username" required><br>
-			        
+
 			        <label for = "password"> Password: </label>
 			        <input type = "password" placeholder = "Password" id = "password" required><br>
-			        
+
 			        <label for = "firstname"> First Name: </label>
 			        <input type = "text" id = "firstname" placeholder = "John" required><br>
-			        
+
 			        <label for = "lastname"> Last Name: </label>
 			        <input id= "lastname" placeholder = "Doe" required><br>
-			        
+
 			        <label for = "pic">Upload your Pic:</label>
 			        <input type = "file" id = "pic" id = "pic" required><br>
-			        
+
 			        <label for = "email"> Email: </label>
 			        <input  type = "email" pattern = "..*@.*\..{1,}" id = "email" placeholder = "demo@domain.com" required><br>
-			        
+
 			        <input type = "submit" name ="SignUp" id = "button" value = "Sign Up" onClick = "register();">
-	        </form>     
-	
+	        </form>
+
 	<script>
 		function register()
 		{
@@ -62,9 +62,9 @@
 			  POSTusername: document.getElementById('username').value,
 			  POSTpassword: document.getElementById('password').value,
 			  POSTemail: document.getElementById('email').value;
-			
+
 			sessionStorage.login = true;
-			window.location.href = "Results.html"; //EDITTTTTT
+			window.location.href = "login.html";
 		}
 		<!-- } -->
 	</script>
