@@ -19,9 +19,7 @@
 
     	</header>   
 	
-	<div class = "form">
-	    <div class = "container">
-	        <form action="../php/insert-client.php" method="post" enctype="multipart/form-data">
+	        <form action="../php/insert-client.php" method="post" enctype="multipart/form-data" id = "signup">
 			        <h1> JOIN US NOW!</h1>
 			       
 			        <label for = "username">Username: </label>
@@ -43,9 +41,7 @@
 			        <input  type = "email" pattern = "..*@.*\..{1,}" id = "email" placeholder = "demo@domain.com" required><br>
 			        
 			        <input type = "submit" name ="SignUp" id = "button" value = "Sign Up" onClick = "register();">
-	        </form>
-	    </div>
-	</div>        
+	        </form>     
 	
 	<script>
 		function register()
