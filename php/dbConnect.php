@@ -9,14 +9,20 @@ function db_connect() {
     if(!isset($connection)) {
          // Load configuration as an array. Use the actual location of your configuration file
         $config = parse_ini_file('../config.ini');
-        $connection = mysqli_connect('localhost',$config['username'],$config['password'],$config['dbname']);
+        $connection = mysqli_connect('127.0.0.1',$config['username'],$config['password'],$config['dbname']);
     }
 
     // If connection was not successful, handle the error
     if($connection === false) {
         // Handle error - notify administrator, log to a file, show an error screen, etc.
-        return mysqli_connect_error();
+        echo mysqli_connect_error();
     }
+
+    if ($connection->connect_error) {
+       die("Connection failed: " . $conn->connect_error);
+    }
+      // echo "Connected successfully";
+
     return $connection;
 }
 
