@@ -36,13 +36,9 @@ $lname = $_POST['POSTlname'];
 $email = $_POST['POSTemail'];
 //$tel = $_POST['POSTtel'];
 
-$myfile = fopen("log.txt", "w") or die("Unable to open file!");
-
-
 // An insertion query. $result will be `true` if successful
 $result = db_query("INSERT INTO `students` (`fname`,`lname`,'date','email','tel')
   VALUES ('{$fname}','{$lname}','{$email}','{$email}','{$tel}')");
-
 
 
 if($result === false) {

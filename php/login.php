@@ -23,8 +23,14 @@ if(empty($row))
 {
 	echo 'Invalid credidentials, please try again.';
 	echo '\nReloading...';
-	// sleep(2);
+
 	echo '<script>';
+
+	// echo 'var start = new Date().getTime();';
+	// echo '  for (var i = 0; i < 1e7; i++) {';
+	// echo 'if ((new Date().getTime() - start) > 2000){';
+  //     	echo 'break;}}';
+
 	echo 'window.location.href = "../html/login.html";';
 	echo '</script>';
 }
@@ -36,6 +42,7 @@ else
 	echo 'sessionStorage.firstName = ' . json_encode($row[3]) . ';';
 	echo 'sessionStorage.lastName = ' . json_encode($row[4]) . ';';
 	echo 'sessionStorage.email = ' . json_encode($row[5]) . ';';
+	echo 'sessionStorage.login = 1;';
 	echo 'window.location.href = "../html/homepage.html";';
 	echo '</script></body></html>';
 	// echo "works";
