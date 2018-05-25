@@ -18,50 +18,60 @@
 
     	</header>   
 
-    	<div class="searchbar">
-            <button onclick= "myFunction()" class= "dropbtn"> Choose your destination...</button>
-              <div id = "myDropdown" class="searchbar-content">
-                <a href =""> Athens </a>
-                <a href =""> Thessaloniki </a>
-                <a href =""> Patras </a>
-              </div>
-        </div>
+    	
+		<select id="myselect" onchange="change_myselect(this.value)">
+			<option value="">Choose your destination:</option>
+			<option value="athens">Athens</option>
+			<option value="thessaloniki">Thessaloniki</option>
+			<option value="patras">Patras</option>
+		</select>
 
-        <script>
-			
-			if(sessionStorage.login == 1)
-			{
-				document.getElementById("login").setAttribute("href", "homepage.html");
-				document.getElementById("login").innerHTML = "Logout";
-				
-				var div = document.getElementById("navbar2");
-				div.innerHTML += '<a href="upload-apartment.html">Upload apartment</a>';
-				
-				sessionStorage.login = 0;
+		<script>
+		function change_myselect(sel) {
+		  var obj, dbParam, xmlhttp, myObj, x, txt = "";
+		  obj = { "table":sel, "limit": };
+		  dbParam = JSON.stringify(obj);
+		  xmlhttp = new XMLHttpRequest();
+		  xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+			  myObj = JSON.parse(this.responseText);
+			  txt += "<table border='1'>"
+			  for (x in myObj) {
+				txt += "<tr><td>" + myObj[x].name + "</td></tr>";
+			  }
+			  txt += "</table>"        
+			  document.getElementById("demo").innerHTML = txt;
 			}
-			
-			/* When the user clicks on the button, 
-			toggle between hiding and showing the dropdown content */
-			function myFunction() {
-				document.getElementById("myDropdown").classList.toggle("show");
-			}
-
-			// Close the dropdown if the user clicks outside of it
-			window.onclick = function(event) {
-			  if (!event.target.matches('.dropbtn')) {
-
-				var dropdowns = document.getElementsByClassName("dropdown-content");
-				var i;
-				for (i = 0; i < dropdowns.length; i++) {
-				  var openDropdown = dropdowns[i];
-				  if (openDropdown.classList.contains('show')) {
-				  }
-				}
-			}
-			}
-			
+		  };
+		  xmlhttp.open("POST", "json_demo_db_post.php", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xmlhttp.send("x=" + dbParam);
+		}
+		</script>
 			
         </script>
+<!-- lista me ta kataxorimena katalimata -->
+		<script>
+			var obj, dbParam, xmlhttp, myObj, x, txt = "";
+			obj = { "table":"apartments", "limit": };
+			dbParam = JSON.stringify(obj);
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					myObj = JSON.parse(this.responseText);
+					txt += "<table border='1'>"
+					for (x in myObj) {
+						txt += "<tr><td>" + myObj[x].name + "</td></tr>";
+					}
+					txt += "</table>"        
+					document.getElementById("demo").innerHTML = txt;
+				}
+			};
+			xmlhttp.open("POST", "json_demo_db_post.php", true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("x=" + dbParam);
+        </script>
+
 		
 		<div class="footer">
            <div class="container">
