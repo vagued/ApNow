@@ -8,11 +8,11 @@ $firstname = $_POST['firstname'];
 $lastname = $_POST['lastname'];
 $email = $_POST['email'];
 
-echo "INSERT INTO 'clients' (username, password, firstname, lastname, email)
-  VALUES ('$username','$password','$firstname','$lastname','$email')";
+// echo "INSERT INTO clients (username, password, firstname, lastname, email)
+//   VALUES ('$username','$password','$firstname','$lastname','$email')";
 
 // An insertion query. $result will be `true` if successful
-$result = db_query("INSERT INTO 'clients' (username, password, firstname, lastname, email)
+$result = db_query("INSERT INTO clients (username, password, firstname, lastname, email)
   VALUES ('$username','$password','$firstname','$lastname','$email')");
 
 if($result === false)
@@ -24,17 +24,18 @@ if($result === false)
 //Photo upload
 
 $result = db_query("SELECT MAX(idclient) FROM clients");
-$result += 1;
 
-$target_dir = "../img/clients/" . $result;
+$numbering = mysqli_fetch_assoc($result);
 
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$target_dir = "../img/clients/" . $numbering["MAX(idclient)"];
+
+$target_file = $target_dir . '.' . pathinfo($_FILES["pic"]["name"],PATHINFO_EXTENSION);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    $check = getimagesize($_FILES["pic"]["tmp_name"]);
     if($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
@@ -49,7 +50,7 @@ if (file_exists($target_file)) {
     $uploadOk = 0;
 }
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
+if ($_FILES["pic"]["size"] > 500000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
@@ -65,11 +66,15 @@ if ($uploadOk == 0) {
 
 // if everything is ok, try to upload file
 } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    if (move_uploaded_file($_FILES["pic"]["tmp_name"], $target_file)) {
+        echo "The file ". basename( $_FILES["pic"]["name"]). " has been uploaded.";
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
 }
+
+echo '<script>';
+echo 'window.location.href = "../html/login.html";';
+echo '</script>';
 
 ?>
