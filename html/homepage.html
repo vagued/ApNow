@@ -26,6 +26,19 @@
 			<option value="patras">Patras</option>
 		</select>
 
+		<script>
+            if(sessionStorage.login == 1)
+			{
+				document.getElementById("login").setAttribute("href", "homepage.html");
+				document.getElementById("login").innerHTML = "Logout";
+				
+				var div = document.getElementById("navbar2");
+				div.innerHTML += '<a href="upload-apartment.html">Upload apartment</a>';
+				
+				sessionStorage.login = 0;
+			}
+       </script>
+
 		<!-- lista me ta katalimata ana poli -->
 		<script>		
 		function change_myselect(sel) {
