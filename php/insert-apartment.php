@@ -5,8 +5,11 @@ require_once('dbConnect.php');
 $title = $_POST['title'];
 $location = $_POST['location'];
 $description = $_POST['description'];
-$checkin = date('c', strtotime($_POST['checkin']);
-$checkout = date('c', strtotime($_POST['checkout']);
+$checkin = date('c', strtotime($_POST['checkin']));
+$checkout = date('c', strtotime($_POST['checkout']));
+$idclient = $_POST['idclient'];
+
+echo $idclient;
 
 // echo "INSERT INTO clients (username, password, firstname, lastname, email)
 //   VALUES ('$username','$password','$firstname','$lastname','$email')";
@@ -74,7 +77,7 @@ if ($uploadOk == 0) {
 }
 
 echo '<script>';
-echo 'window.location.href = "../html/login.html";';
+// echo 'window.location.href = "../html/login.html";';
 echo '</script>';
 
 ?>
