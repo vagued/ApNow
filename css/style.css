@@ -33,6 +33,11 @@ form {
 
 }
 
+label {
+  font-size: 20px;
+  font-family:'Roboto Condensed', sans-serif;
+}
+
 input{
   width: 50%;
   height: 40px;
@@ -46,10 +51,11 @@ input{
   outline:none;
 }
 
+
 input[type=submit] {
        width: 150px;
        height: 50px;
-       background-color: #EDD3B0;
+       background-color: #e3b982;
        color: white;
        padding: 12px 20px;
        border: none;
@@ -61,11 +67,11 @@ input[type=submit] {
 input[type=submit]:hover{
    width: 150px;
        height: 50px;
-       background-color:#e3b982;
+       background-color:#e3a582;
        color: white;
        padding: 12px 20px;
        border: none;
-       border-radius: 4px;
+       border-radius: 15px;
        cursor: pointer;
        font-family:'Roboto Condensed', sans-serif;
        font-size: 20px;
@@ -125,7 +131,7 @@ select:hover, select:focus {
 
 
 /* Dropdown Content (Hidden by Default) */
-option {
+select-items {
     display: none;
     margin:auto;
     position: relative;
@@ -138,21 +144,16 @@ option {
 }
 
 /* Links inside the dropdown */
-option {
+select-items {
     color: black;
     padding: 12px 16px;
     margin:5px 5px 5px 5px;
-	border-radius:10px;
+	  border-radius:10px;
     text-decoration: none;
     display: block;
 }
 
-/* Change color of dropdown links on hover */
-option :hover {
-	background-color: #ddd;
-	border-radius: 15px;
-	
-	}
+
 
 
 .profile {
