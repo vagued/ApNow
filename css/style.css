@@ -101,7 +101,7 @@ input[type=submit]:hover{
  }
 
 /* Dropdown Button */
-.dropbtn {
+select {
     background-color: rgba(10, 30, 50, 0.4);
     color: black;
     display: block;
@@ -117,7 +117,7 @@ input[type=submit]:hover{
 }
 
 /* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
+select:hover, select:focus {
     background-color: #ddd;
 	color: black;
 }
@@ -125,7 +125,7 @@ input[type=submit]:hover{
 
 
 /* Dropdown Content (Hidden by Default) */
-.searchbar-content {
+option {
     display: none;
     margin:auto;
     position: relative;
@@ -138,7 +138,7 @@ input[type=submit]:hover{
 }
 
 /* Links inside the dropdown */
-.searchbar-content a {
+option {
     color: black;
     padding: 12px 16px;
     margin:5px 5px 5px 5px;
@@ -148,16 +148,12 @@ input[type=submit]:hover{
 }
 
 /* Change color of dropdown links on hover */
-.searchbar-content a:hover {
+option :hover {
 	background-color: #ddd;
 	border-radius: 15px;
 	
 	}
 
-
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
 
 .profile {
   padding: 30px;
