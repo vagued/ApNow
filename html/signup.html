@@ -19,28 +19,28 @@
 
     	</header>
 
-	        <form action="../php/insert-client.php" method="post" enctype="multipart/form-data" id = "signup">
+	        <form action="../php/insert-client.php" method="post" enctype="multipart/form-data" name = "signup">
 			        <h1> JOIN US NOW!</h1>
 
 			        <label for = "username">Username: </label>
-			        <input type = "text" placeholder = "Username" id = "username" required><br>
+			        <input type = "text" placeholder = "Username" name = "username" required><br>
 
 			        <label for = "password"> Password: </label>
-			        <input type = "password" placeholder = "Password" id = "password" required><br>
+			        <input type = "password" placeholder = "Password" name = "password" required><br>
 
 			        <label for = "firstname"> First Name: </label>
-			        <input type = "text" id = "firstname" placeholder = "John" required><br>
+			        <input type = "text" name = "firstname" placeholder = "John" required><br>
 
 			        <label for = "lastname"> Last Name: </label>
-			        <input id= "lastname" placeholder = "Doe" required><br>
+			        <input name= "lastname" placeholder = "Doe" required><br>
 
 			        <label for = "pic">Upload Pic:</label>
-			        <input type = "file" id = "pic" id = "pic" required><br>
+			        <input type = "file" name = "pic" name = "pic" required><br>
 
 			        <label for = "email"> Email: </label>
-			        <input  type = "email" pattern = "..*@.*\..{1,}" id = "email" placeholder = "demo@domain.com" required><br>
+			        <input  type = "email" pattern = "..*@.*\..{1,}" name = "email" placeholder = "demo@domain.com" required><br>
 
-			        <input type = "submit" name ="SignUp" id = "button" value = "Sign Up" onClick = "register();">
+			        <input type = "submit" name ="SignUp" name = "button" value = "Sign Up" onClick = "register();">
 	        </form>
 
 	<script>

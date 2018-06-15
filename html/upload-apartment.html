@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Upload form</title>
+	<meta charset = "UTF-8">
+    <link rel= "stylesheet" href = "../css/style.css">
+</head>
+
+<body id = "def">
+    <header>
+    	<div class = "navbar">
+                <a href = "" id = "logo"> <img src = "../logo.png"> </a>
+                <a href = "login.html" id = "login"> Login </a>
+                <a href = "signup.html" id = "signup"> Sign Up </a>
+                <a href = ""> Help! </a>
+				<div id="navbar2"></div>
+        </div>
+    </header>
+
+			<form action = "../php/insert-apartment.php" method = "post" id = "uploadform">
+				<h1>Upload your Apartment</h1>
+
+				<label for = "aptitle"> Title: </label>
+				<input type="text" name="title" id="aptitle" placeholder="Apartment's title:" required><br>
+
+				<label for = "place">Location: </label>
+				<input type="text" name="location" id="place" placeholder = "Where is it?"  required><br>
+
+				<label for = "description"> Description: </label>
+				<input type="text" name="description" id="description" placeholder="Apartment's description" required><br>
+
+				<label for = "picture"> Picture: </label>
+				<input type = "file" name = "pic" id = "picture" placeholder = "Apartment's pic" required><br>
+
+				<label for = "checkin"> Check in: </label>
+				<input type = "date" name = "checkin" id = "checkin"required><br>
+
+				<label for = "checkout"> Check out: </label>
+				<input type = "date" name = "checkout" id = "checkout" required> <br>
+
+				<input type="hidden" name="idclient" value="" />
+
+				<input type = "submit" name = "Upload" id = "button">
+			</form>
+
+    <div class="footer">
+        <div class="container">
+            <p>&copy; ApNow 2018</p>
+        </div>
+    </div>
+
+		<script>
+			document.selectElementByName('idclient').setAttribute('value') = sessionStorage.idClient;
+		</script>
+
+</body>
+</html>
