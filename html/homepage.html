@@ -5,7 +5,7 @@
     	<title>Homepage</title>
     	<link rel="stylesheet" href="..\css\style.css">
 
-    </head>	
+    </head>
     <body id = "def">
     	<header>
     	   <div class = "navbar">
@@ -14,11 +14,11 @@
                 	<a href = "signup.html" id = "signup"> Sign Up </a>
                 	<a href = ""> Help! </a>
 					<div id="navbar2"></div>
-           </div> 
+           </div>
 
-    	</header>   
+    	</header>
 
-    	
+
 		<select id="myselect" onchange="change_myselect(this.value)">
 			<option value="">Choose your destination:</option>
 			<option value="athens">Athens</option>
@@ -31,39 +31,42 @@
 			{
 				document.getElementById("login").setAttribute("href", "homepage.html");
 				document.getElementById("login").innerHTML = "Logout";
-				
+
 				var div = document.getElementById("navbar2");
 				div.innerHTML += '<a href="upload-apartment.html">Upload apartment</a>';
-				
+
 				sessionStorage.login = 0;
 			}
        </script>
 
 		<!-- lista me ta katalimata ana poli -->
-		<script>		
+		<script>
 		function change_myselect(sel) {
 		  var obj, dbParam, xmlhttp, myObj, x, txt = "";
 		  obj = { "table":sel, "limit": };
 		  dbParam = JSON.stringify(obj);
 		  xmlhttp = new XMLHttpRequest();
-		  xmlhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-			  myObj = JSON.parse(this.responseText);
-			  txt += "<table border='1'>"
-			  for (x in myObj) {
-				txt += "<tr><td>" + myObj[x].name + "</td></tr>";
-			  }
-			  txt += "</table>"        
-			  document.getElementById("demo").innerHTML = txt;
-			}
+
+		  xmlhttp.onreadystatechange = function()
+      {
+    		if (this.readyState == 4 && this.status == 200) {
+    		  myObj = JSON.parse(this.responseText);
+    		  txt += "<table border='1'>"
+    		  for (x in myObj) {
+    			txt += "<tr><td>" + myObj[x].name + "</td></tr>";
+    		  }
+    		  txt += "</table>"
+    		  document.getElementById("demo").innerHTML = txt;
+    		}
 		  };
+
 		  xmlhttp.open("POST", "json_demo_db_post.php", true);
 		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		  xmlhttp.send("x=" + dbParam);
 		}
 		</script>
-			
- 
+
+
 <!-- lista me ta kataxorimena katalimata -->
 		<script>
 			var obj, dbParam, xmlhttp, myObj, x, txt = "";
@@ -77,7 +80,7 @@
 					for (x in myObj) {
 						txt += "<tr><td>" + myObj[x].name + "</td></tr>";
 					}
-					txt += "</table>"        
+					txt += "</table>"
 					document.getElementById("demo").innerHTML = txt;
 				}
 			};
@@ -86,13 +89,13 @@
 			xmlhttp.send("x=" + dbParam);
         </script>
 
-		
+
 		<div class="footer">
            <div class="container">
                <p>&copy; ApNow 2018</p>
            </div>
         </div>
 
-               
+
     </body>
 </html>

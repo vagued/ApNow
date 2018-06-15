@@ -2,14 +2,7 @@
 
 require_once('dbConnect.php');
 
-$location = $_REQUEST["location"];
-
-if($location=="all")
-  $result = db_query("SELECT idapartment, title FROM apartments");
-
-else
-  $result = db_query("SELECT idapartment, title FROM apartments WHERE location='$location'");
-
+$result = db_query("SELECT idapartment, title FROM apartments");
 
 $rows = mysql_num_rows($result);
 
