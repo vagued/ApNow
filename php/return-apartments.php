@@ -4,19 +4,21 @@ require_once('dbConnect.php');
 
 $result = db_query("SELECT idapartment, title FROM apartments");
 
-$rows = mysql_num_rows($result);
+$rows = mysqli_num_rows($result);
 
 if($rows==0)
 	echo 'No apartments for the selected location.';
 else
 {
-  while($row = mysql_fetch_array($result))
+	$data=array(1,"asd");
+  while($row = mysqli_fetch_array($result))
   {
-    echo json_encode( array(
+     array_merge(data, array(
       "idapartment" => $row['idapartment'],
       "title" => $row['title']
     ));
   }
+	echo json_encode(data);
 }
 
 // var data = {};

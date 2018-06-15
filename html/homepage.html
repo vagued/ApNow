@@ -72,20 +72,23 @@
 			 var xmlhttp, myObj, x, txt = "";
 			 xmlhttp = new XMLHttpRequest();
 			 xmlhttp.onreadystatechange = function() {
-         alert("rec2");
 				 if (this.readyState == 4 && this.status == 200) {
+           alert(1);
 					 myObj = JSON.parse(this.responseText);
+           alert(2);
 					 txt += "<table border='1'>"
 					 for (x in myObj) {
-						 txt += '<tr><td><img src="../img/apartments/"' + myObj[x].idapartment + '.png"></td></tr>';
+             alert(3);
+						 // txt += '<tr><td><img src="../img/apartments/"' + myObj[x].idapartment + '.png"></td></tr>';
+             txt += '<tr><td><' + myObj[x].title + '></td></tr>';
 					 }
 					 txt += "</table>"
 					 document.getElementById("apartments").innerHTML = txt;
 				 }
 			 };
-			 xmlhttp.open("GET", "return-apartments.php", true);
+			 xmlhttp.open("GET", "../php/return-apartments.php", true);
 			 xmlhttp.send();
-         </script>
+       </script>
 
 		<div class="footer">
            <div class="container">
