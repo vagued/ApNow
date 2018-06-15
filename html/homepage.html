@@ -26,6 +26,8 @@
 			<option value="patras">Patras</option>
 		</select>
 
+    <p id="apartments"></p>
+
 		<script>
             if(sessionStorage.login == 1)
 			{
@@ -39,69 +41,54 @@
 			}
        </script>
 
-		<!-- lista me ta katalimata ana poli -->
-		<!-- <script>		 -->
-		<!-- function change_myselect(sel) { -->
-		  <!-- var obj, dbParam, xmlhttp, myObj, x, txt = ""; -->
-		  <!-- obj = { "table":sel, "limit": }; -->
-		  <!-- dbParam = JSON.stringify(obj); -->
-		  <!-- xmlhttp = new XMLHttpRequest(); -->
-		  <!-- xmlhttp.onreadystatechange = function() { -->
-			<!-- if (this.readyState == 4 && this.status == 200) { -->
-			  <!-- myObj = JSON.parse(this.responseText); -->
-			  <!-- txt += "<table border='1'>" -->
-			  <!-- for (x in myObj) { -->
-				<!-- txt += "<tr><td>" + myObj[x].name + "</td></tr>"; -->
-			  <!-- } -->
-			  <!-- txt += "</table>"         -->
-			  <!-- document.getElementById("demo").innerHTML = txt; -->
-			<!-- } -->
-		  <!-- }; -->
-		  <!-- xmlhttp.open("POST", "json_demo_db_post.php", true); -->
-		  <!-- xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); -->
-		  <!-- xmlhttp.send("x=" + dbParam); -->
-		<!-- } -->
-		<!-- </script> -->
+		 <!-- lista me ta katalimata ana poli -->
+		 <script>
+		 function change_myselect(sel) {
+		   var obj, dbParam, xmlhttp, myObj, x, txt = "";
+		   obj = { "table":sel, "limit": };
+		   dbParam = JSON.stringify(obj);
+		   xmlhttp = new XMLHttpRequest();
+		   xmlhttp.onreadystatechange = function() {
+         alert("rec1");
+			 if (this.readyState == 4 && this.status == 200) {
+			   myObj = JSON.parse(this.responseText);
+			   txt += "<table border='1'>"
+			   for (x in myObj) {
+				 txt += '<tr><td><img src="../img/apartments/"' + myObj[x].idapartment + '"></td></tr>';
+			   }
+			   txt += "</table>"
+			   document.getElementById("apartments").innerHTML = txt;
+			 }
+		   };
+		   xmlhttp.open("POST", "return-apartments.php", true);
+		   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		   xmlhttp.send();
+		 }
+		 </script>
 
 
-<!-- lista me ta kataxorimena katalimata -->
-		<!-- <script> -->
-			<!-- var obj, dbParam, xmlhttp, myObj, x, txt = ""; -->
-			<!-- obj = { "table":"apartments", "limit": }; -->
-			<!-- dbParam = JSON.stringify(obj); -->
-			<!-- xmlhttp = new XMLHttpRequest(); -->
-			<!-- xmlhttp.onreadystatechange = function() { -->
-				<!-- if (this.readyState == 4 && this.status == 200) { -->
-					<!-- myObj = JSON.parse(this.responseText); -->
-					<!-- txt += "<table border='1'>" -->
-					<!-- for (x in myObj) { -->
-						<!-- txt += "<tr><td>" + myObj[x].name + "</td></tr>"; -->
-					<!-- } -->
-					<!-- txt += "</table>"         -->
-					<!-- document.getElementById("demo").innerHTML = txt; -->
-				<!-- } -->
-			<!-- }; -->
-			<!-- xmlhttp.open("POST", "json_demo_db_post.php", true); -->
-			<!-- xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); -->
-			<!-- xmlhttp.send("x=" + dbParam); -->
-        <!-- </script> -->
-<!-- <!-- lista me ta kataxorimena(node.js) --> -->
-<!-- var mysql = require('mysql'); -->
-
-<!-- var con = mysql.createConnection({ -->
-  <!-- host: "localhost", -->
-  <!-- user: "yourusername", -->
-  <!-- password: "yourpassword", -->
-  <!-- database: "mydb" -->
-<!-- }); -->
-
-<!-- con.connect(function(err) { -->
-  <!-- if (err) throw err; -->
-  <!-- con.query("SELECT name, address FROM customers", function (err, result, fields) { -->
-    <!-- if (err) throw err; -->
-    <!-- console.log(result); -->
-  <!-- }); -->
-<!-- }); -->
+ <!-- lista me ta kataxorimena katalimata -->
+		 <script>
+			 var obj, dbParam, xmlhttp, myObj, x, txt = "";
+			 obj = { "table":"apartments", "limit": };
+			 dbParam = JSON.stringify(obj);
+			 xmlhttp = new XMLHttpRequest();
+			 xmlhttp.onreadystatechange = function() {
+         alert("rec2");
+				 if (this.readyState == 4 && this.status == 200) {
+					 myObj = JSON.parse(this.responseText);
+					 txt += "<table border='1'>"
+					 for (x in myObj) {
+						 txt += '<tr><td><img src="../img/apartments/"' + myObj[x].idapartment + '.png"></td></tr>';
+					 }
+					 txt += "</table>"
+					 document.getElementById("apartments").innerHTML = txt;
+				 }
+			 };
+			 xmlhttp.open("POST", "return-apartments.php", true);
+			 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			 xmlhttp.send();
+         </script>
 
 		<div class="footer">
            <div class="container">

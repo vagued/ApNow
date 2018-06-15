@@ -17,7 +17,7 @@
         </div>
     </header>
 
-			<form action = "../php/insert-apartment.php" method = "post" id = "uploadform">
+			<form action = "../php/insert-apartment.php" method = "post" enctype="multipart/form-data" id = "uploadform">
 				<h1>Upload your Apartment</h1>
 
 				<label for = "aptitle"> Title: </label>
@@ -50,7 +50,7 @@
     </div>
 
 		<script>
-			document.selectElementByName('idclient').setAttribute('value') = sessionStorage.idClient;
+			document.getElementsByName('idclient')[0].setAttribute('value', sessionStorage.idClient);
 		</script>
 
 </body>

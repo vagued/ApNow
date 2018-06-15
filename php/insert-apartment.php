@@ -5,17 +5,15 @@ require_once('dbConnect.php');
 $title = $_POST['title'];
 $location = $_POST['location'];
 $description = $_POST['description'];
-$checkin = date('c', strtotime($_POST['checkin']));
-$checkout = date('c', strtotime($_POST['checkout']));
+$checkin = date('Y-m-d', strtotime($_POST['checkin']));
+$checkout = date('Y-m-d', strtotime($_POST['checkout']));
 $idclient = $_POST['idclient'];
 
-echo $idclient;
-
-// echo "INSERT INTO clients (username, password, firstname, lastname, email)
-//   VALUES ('$username','$password','$firstname','$lastname','$email')";
+echo "INSERT INTO apartments (idclient, title, location, description, checkin, checkout)
+  VALUES ('$idclient','$title','$location','$description','$checkin','$checkout')";
 
 // An insertion query. $result will be `true` if successful
-$result = db_query("INSERT INTO apartments (idclient, title, password, location, description, checkin, checkout)
+$result = db_query("INSERT INTO apartments (idclient, title, location, description, checkin, checkout)
   VALUES ('$idclient','$title','$location','$description','$checkin','$checkout')");
 
 if($result === false)
@@ -26,11 +24,11 @@ if($result === false)
 
 //Photo upload
 
-$result = db_query("SELECT MAX(idclient) FROM clients");
+$result = db_query("SELECT MAX(idapartment) FROM apartments");
 
 $numbering = mysqli_fetch_assoc($result);
 
-$target_dir = "../img/clients/" . $numbering["MAX(idclient)"];
+$target_dir = "../img/apartments/" . $numbering["MAX(idapartment)"];
 
 $target_file = $target_dir . '.' . pathinfo($_FILES["pic"]["name"],PATHINFO_EXTENSION);
 $uploadOk = 1;
@@ -77,7 +75,7 @@ if ($uploadOk == 0) {
 }
 
 echo '<script>';
-// echo 'window.location.href = "../html/login.html";';
+echo 'window.location.href = "../html/login.html";';
 echo '</script>';
 
 ?>
