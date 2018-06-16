@@ -74,10 +74,11 @@
 			 xmlhttp.onreadystatechange = function() {
 				 if (this.readyState == 4 && this.status == 200) {
 					 myObj = JSON.parse(this.responseText);
-					 txt += "<table border='1'>"
+					 txt += "<table>"
 					 for (x in myObj) {
+             // alert(myObj[x].title);
 						 // txt += '<tr><td><img src="../img/apartments/"' + myObj[x].idapartment + '.png"></td></tr>';
-             txt += '<tr><td><' + myObj[x].title + '></td></tr>';
+             txt += '<tr><td>' + myObj[x].title + '</td></tr>';
 					 }
 					 txt += "</table>"
 					 document.getElementById("apartments").innerHTML = txt;
