@@ -49,7 +49,7 @@
 		   dbParam = JSON.stringify(obj);
 		   xmlhttp = new XMLHttpRequest();
 		   xmlhttp.onreadystatechange = function() {
-         alert("rec1");
+
 			 if (this.readyState == 4 && this.status == 200) {
 			   myObj = JSON.parse(this.responseText);
 			   txt += "<table border='1'>"
@@ -73,12 +73,9 @@
 			 xmlhttp = new XMLHttpRequest();
 			 xmlhttp.onreadystatechange = function() {
 				 if (this.readyState == 4 && this.status == 200) {
-           alert(1);
 					 myObj = JSON.parse(this.responseText);
-           alert(2);
 					 txt += "<table border='1'>"
 					 for (x in myObj) {
-             alert(3);
 						 // txt += '<tr><td><img src="../img/apartments/"' + myObj[x].idapartment + '.png"></td></tr>';
              txt += '<tr><td><' + myObj[x].title + '></td></tr>';
 					 }
@@ -88,14 +85,12 @@
 			 };
 			 xmlhttp.open("GET", "../php/return-apartments.php", true);
 			 xmlhttp.send();
-       </script>
+     </script>
 
 		<div class="footer">
            <div class="container">
                <p>&copy; ApNow 2018</p>
            </div>
         </div>
-
-
     </body>
 </html>
