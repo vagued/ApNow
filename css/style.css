@@ -1,4 +1,4 @@
-    p, h1, label {
+p, h1, label {
 	color: #fff;
 }
 
@@ -156,8 +156,6 @@ select-items {
     text-decoration: none;
     display: block;
 }
-
-
 
 
 .profile {

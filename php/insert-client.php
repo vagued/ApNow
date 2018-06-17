@@ -8,15 +8,17 @@ $firstname = $_POST['firstname'];
 $lastname = $_POST['lastname'];
 $email = $_POST['email'];
 
+$extension = pathinfo($_FILES["pic"]["name"],PATHINFO_EXTENSION);
+
 // echo "INSERT INTO clients (username, password, firstname, lastname, email)
 //   VALUES ('$username','$password','$firstname','$lastname','$email')";
 
 // An insertion query. $result will be `true` if successful
-$result = db_query("INSERT INTO clients (username, password, firstname, lastname, email)
-  VALUES ('$username','$password','$firstname','$lastname','$email')");
+$result = db_query("INSERT INTO clients (username, password, firstname, lastname, email, extension)
+  VALUES ('$username','$password','$firstname','$lastname','$email','$extension')");
 
 if($result === false)
-    echo "Failed to insert #1\n";
+    echo "Failed to insert\n";
 // } else {
 //     $txt = "Success #2\n";
 // }
@@ -29,7 +31,7 @@ $numbering = mysqli_fetch_assoc($result);
 
 $target_dir = "../img/clients/" . $numbering["MAX(idclient)"];
 
-$target_file = $target_dir . '.' . pathinfo($_FILES["pic"]["name"],PATHINFO_EXTENSION);
+$target_file = $target_dir . '.' . $extension;
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 

@@ -9,12 +9,14 @@ $checkin = date('Y-m-d', strtotime($_POST['checkin']));
 $checkout = date('Y-m-d', strtotime($_POST['checkout']));
 $idclient = $_POST['idclient'];
 
-echo "INSERT INTO apartments (idclient, title, location, description, checkin, checkout)
-  VALUES ('$idclient','$title','$location','$description','$checkin','$checkout')";
+$extension = pathinfo($_FILES["pic"]["name"],PATHINFO_EXTENSION);
+
+// echo "INSERT INTO apartments (idclient, title, location, description, checkin, checkout, extension)
+//   VALUES ('$idclient','$title','$location','$description','$checkin','$checkout')";
 
 // An insertion query. $result will be `true` if successful
-$result = db_query("INSERT INTO apartments (idclient, title, location, description, checkin, checkout)
-  VALUES ('$idclient','$title','$location','$description','$checkin','$checkout')");
+$result = db_query("INSERT INTO apartments (idclient, title, location, description, checkin, checkout, extension)
+  VALUES ('$idclient','$title','$location','$description','$checkin','$checkout','$extension')");
 
 if($result === false)
     echo "Failed to insert #1\n";
@@ -30,7 +32,7 @@ $numbering = mysqli_fetch_assoc($result);
 
 $target_dir = "../img/apartments/" . $numbering["MAX(idapartment)"];
 
-$target_file = $target_dir . '.' . pathinfo($_FILES["pic"]["name"],PATHINFO_EXTENSION);
+$target_file = $target_dir . '.' . $extension;
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
