@@ -44,20 +44,20 @@
 		 <!-- lista me ta katalimata ana poli -->
 		 <script>
 		 function change_myselect(sel) {
-		   var obj, dbParam, xmlhttp, myObj, x, txt = "";
+		   var obj, dbParam, xmlhttp, apartments, x, grid_html = "";
 		   obj = { "table":sel, "limit": };
 		   dbParam = JSON.stringify(obj);
 		   xmlhttp = new XMLHttpRequest();
 		   xmlhttp.onreadystatechange = function() {
 
 			 if (this.readyState == 4 && this.status == 200) {
-			   myObj = JSON.parse(this.responseText);
-			   txt += "<table border='1'>"
-			   for (x in myObj) {
-				 txt += '<tr><td><img src="../img/apartments/"' + myObj[x].idapartment + '"></td></tr>';
+			   apartments = JSON.parse(this.responseText);
+			   grid_html += "<table border='1'>"
+			   for (x in apartments) {
+				 grid_html += '<tr><td><img src="../img/apartments/"' + apartments[x].idapartment + '"></td></tr>';
 			   }
-			   txt += "</table>"
-			   document.getElementById("apartments").innerHTML = txt;
+			   grid_html += "</table>"
+			   document.getElementById("apartments").innerHTML = grid_html;
 			 }
 		   };
 		   xmlhttp.open("POST", "return-apartments.php", true);
@@ -69,19 +69,30 @@
 
  <!-- lista me ta kataxorimena katalimata -->
 		 <script>
-			 var xmlhttp, myObj, x, txt = "";
+			 var xmlhttp, apartments, x, grid_html = "";
 			 xmlhttp = new XMLHttpRequest();
 			 xmlhttp.onreadystatechange = function() {
 				 if (this.readyState == 4 && this.status == 200) {
-					 myObj = JSON.parse(this.responseText);
-					 txt += "<table>"
-					 for (x in myObj) {
-             // alert(myObj[x].title);
-						 // txt += '<tr><td><img src="../img/apartments/"' + myObj[x].idapartment + '.png"></td></tr>';
-             txt += '<tr><td>' + myObj[x].title + '</td></tr>';
+					 apartments = JSON.parse(this.responseText);
+					 grid_html += "<table>"
+					 for (x in apartments) {
+             // alert(apartments[x].title);
+						 // grid_html += '<tr><td><img src="../img/apartments/"' + apartments[x].idapartment + '.png"></td></tr>';
+             grid_html +=
+               '<tr><td>' +
+                  '<div class="container">' +
+                   '<a href="apartment.html?' + apartments[x].idapartment + '"> ' +
+                    '<img src="' + apartments[x].clientid + apartments[x].extension + '" ' +
+                    'class="grid-image" style="width:100%">' +
+                      '<div class="middle">' +
+                        '<div class="image-text">John Doe</div>' +
+                      '</div>' +
+                    '</a>' +
+                  '</div>' +
+                '</td></tr>';
 					 }
-					 txt += "</table>"
-					 document.getElementById("apartments").innerHTML = txt;
+					 grid_html += "</table>"
+					 document.getElementById("apartments").innerHTML = grid_html;
 				 }
 			 };
 			 xmlhttp.open("GET", "../php/return-apartments.php", true);
