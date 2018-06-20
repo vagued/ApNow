@@ -15,14 +15,41 @@
                 	<a href = " " id = "help">Help!</a>
                 	<a href = "uploadform.html" id = "upload">Upload</a>
 					<div id="navbar2"></div>
-           </div>
+         </div>
     	</header>
 
+      <script>
+
+        var apartmentid = location.search.substring(1);
+
+        var xmlhttp, apartments, x, grid_html = "";
+
+   			xmlhttp = new XMLHttpRequest();
+   			xmlhttp.onreadystatechange = function()
+        {
+  			  if (this.readyState == 4 && this.status == 200)
+            apartment = JSON.parse(this.responseText);
+
+          document.getElementById("photo").setAttribute("src",
+          '../img/apartments/' + apartment[0].idapartment + '.' + apartment[0].extension);
+
+          document.getElementById("title").innerHTML = apartment[0].title;
+
+          document.getElementById("description").innerHTML = apartment[0].description;
+
+          document.getElementById("location").innerHTML = apartment[0].location;
+        };
+
+       xmlhttp.open("GET", "../php/return-apartment.php?q=" + apartmentid, true);
+ 			 xmlhttp.send();
+
+      </script>
+
 		   <div class="apartment">
-               <img src="https://image.flaticon.com/icons/svg/149/149064.svg" />
-               <h1>Title</h1>
-               <h2>Description </h2>
-               <h2>Location</h2>
+               <img id="photo" src="https://image.flaticon.com/icons/svg/149/149064.svg" />
+               <h1 id="title">Title</h1>
+               <h2 id="description">Description </h2>
+               <h2 id="location">Location</h2>
 
 			   <label for = "check in"> Check in: </label>
 			   <input type = "date" name = "checkin" id = "check in"><br>

@@ -21,15 +21,16 @@
 
 		<select id="myselect" onchange="change_myselect(this.value)">
 			<option value="">Choose your destination:</option>
-			<option value="athens">Athens</option>
-			<option value="thessaloniki">Thessaloniki</option>
-			<option value="patras">Patras</option>
+      <option value="All">All</option>
+			<option value="Athens">Athens</option>
+			<option value="Thessaloniki">Thessaloniki</option>
+			<option value="Patras">Patras</option>
 		</select>
 
     <p id="apartments"></p>
 
 		<script>
-            if(sessionStorage.login == 1)
+      if(sessionStorage.login == 1)
 			{
 				document.getElementById("login").setAttribute("href", "homepage.html");
 				document.getElementById("login").innerHTML = "Logout";
@@ -43,27 +44,41 @@
 
 		 <!-- lista me ta katalimata ana poli -->
 		 <script>
-		 function change_myselect(sel) {
-		   var obj, dbParam, xmlhttp, apartments, x, grid_html = "";
-		   obj = { "table":sel, "limit": };
-		   dbParam = JSON.stringify(obj);
-		   xmlhttp = new XMLHttpRequest();
-		   xmlhttp.onreadystatechange = function() {
+		 function change_myselect(location) {
+       var xmlhttp, apartments, x, grid_html = "";
 
-			 if (this.readyState == 4 && this.status == 200) {
-			   apartments = JSON.parse(this.responseText);
-			   grid_html += "<table border='1'>"
-			   for (x in apartments) {
-				 grid_html += '<tr><td><img src="../img/apartments/"' + apartments[x].idapartment + '"></td></tr>';
-			   }
-			   grid_html += "</table>"
-			   document.getElementById("apartments").innerHTML = grid_html;
-			 }
-		   };
-		   xmlhttp.open("POST", "return-apartments.php", true);
-		   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		   xmlhttp.send();
-		 }
+			 xmlhttp = new XMLHttpRequest();
+			 xmlhttp.onreadystatechange = function() {
+
+				 if (this.readyState == 4 && this.status == 200) {
+
+           apartments = JSON.parse(this.responseText);
+
+
+					 for (x in apartments)
+           {
+             grid_html +=
+               '<div class="gallery">' +
+                  '<div class="container">' +
+                   '<a href="apartment.html?' + apartments[x].idapartment + '"> ' +
+                    '<img src="../img/apartments/' +
+                    + apartments[x].idapartment + '.' + apartments[x].extension + '" ' +
+                    'class="grid-image">' +
+                      '<div class="middle">' +
+                        '<div class="image-text">' + apartments[x].title + '</div>' +
+                      '</div>' +
+                    '</a>' +
+                  '</div>' +
+                '</div>';
+					 }
+
+					 document.getElementById("apartments").innerHTML = grid_html;
+				 }
+			 };
+
+			 xmlhttp.open("GET", "../php/return-apartments.php?q=" + location, true);
+			 xmlhttp.send();
+     }
 		 </script>
 
 
@@ -100,7 +115,7 @@
 				 }
 			 };
 
-			 xmlhttp.open("GET", "../php/return-apartments.php", true);
+			 xmlhttp.open("GET", "../php/return-apartments.php?q=All", true);
 			 xmlhttp.send();
 
      </script>

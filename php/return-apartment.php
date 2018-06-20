@@ -2,14 +2,10 @@
 
 require_once('dbConnect.php');
 
-$location = $_REQUEST["q"];
+$id = $_REQUEST["q"];
 
-if($location=="All")
-	$result = db_query("SELECT idapartment, title, extension FROM apartments");
-
-else
-	$result = db_query('SELECT idapartment, title, extension FROM apartments
-		WHERE location="' . $location . '"');
+$result = db_query('SELECT * FROM apartments
+		WHERE idapartment="' . $id . '"');
 
 $rows = mysqli_num_rows($result);
 $myArray = array();

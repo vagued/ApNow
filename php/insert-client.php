@@ -19,9 +19,6 @@ $result = db_query("INSERT INTO clients (username, password, firstname, lastname
 
 if($result === false)
     echo "Failed to insert\n";
-// } else {
-//     $txt = "Success #2\n";
-// }
 
 //Photo upload
 

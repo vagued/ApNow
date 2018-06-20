@@ -19,12 +19,12 @@ div.gallery {
     margin: 5px;
     border: 1px solid #ccc;
     float: left;
-    width: 670px;
+    width: 500px;
 }
 
 .container {
     position: relative;
-    width: 50%;
+    width: 100%;
 }
 
 .grid-image {
@@ -34,7 +34,7 @@ div.gallery {
   height: auto;
   transition: .5s ease;
   backface-visibility: hidden;
-	width:100%;
+	width: 100%;
 }
 
 .middle {
