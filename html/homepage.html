@@ -1,4 +1,4 @@
-<DOCTYPE! html>
+2<DOCTYPE! html>
 <html>
     <head>
     	<meta charset="UTF-8">
@@ -69,34 +69,40 @@
 
  <!-- lista me ta kataxorimena katalimata -->
 		 <script>
+
 			 var xmlhttp, apartments, x, grid_html = "";
+
 			 xmlhttp = new XMLHttpRequest();
 			 xmlhttp.onreadystatechange = function() {
+
 				 if (this.readyState == 4 && this.status == 200) {
-					 apartments = JSON.parse(this.responseText);
-					 grid_html += "<table>"
-					 for (x in apartments) {
-             // alert(apartments[x].title);
-						 // grid_html += '<tr><td><img src="../img/apartments/"' + apartments[x].idapartment + '.png"></td></tr>';
+
+           apartments = JSON.parse(this.responseText);
+
+					 for (x in apartments)
+           {
              grid_html +=
-               '<tr><td>' +
+               '<div class="gallery">' +
                   '<div class="container">' +
                    '<a href="apartment.html?' + apartments[x].idapartment + '"> ' +
-                    '<img src="' + apartments[x].clientid + apartments[x].extension + '" ' +
-                    'class="grid-image" style="width:100%">' +
+                    '<img src="../img/apartments/' +
+                    + apartments[x].clientid + '.' + apartments[x].extension + '" ' +
+                    'class="grid-image">' +
                       '<div class="middle">' +
-                        '<div class="image-text">John Doe</div>' +
+                        '<div class="image-text">' + apartments[x].title + '</div>' +
                       '</div>' +
                     '</a>' +
                   '</div>' +
-                '</td></tr>';
+                '</div>';
 					 }
-					 grid_html += "</table>"
+
 					 document.getElementById("apartments").innerHTML = grid_html;
 				 }
 			 };
+
 			 xmlhttp.open("GET", "../php/return-apartments.php", true);
 			 xmlhttp.send();
+
      </script>
 
 		<div class="footer">

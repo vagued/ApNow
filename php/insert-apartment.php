@@ -77,7 +77,7 @@ if ($uploadOk == 0) {
 }
 
 echo '<script>';
-echo 'window.location.href = "../html/login.html";';
+echo 'window.location.href = "../html/homepage.html";';
 echo '</script>';
 
 ?>
