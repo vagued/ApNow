@@ -2,7 +2,7 @@
 
 require_once('dbConnect.php');
 
-$result = db_query("SELECT idapartment, title FROM apartments");
+$result = db_query("SELECT idapartment, title, extension FROM apartments");
 
 $rows = mysqli_num_rows($result);
 $myArray = array();
