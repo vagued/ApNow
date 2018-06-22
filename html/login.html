@@ -28,9 +28,18 @@
       <input type = "password" placeholder = "Password" required= "" name="password"><br>
 
     <input type = "submit" value = "Log in"><br>
+
+    <label id="error"></label>
 	</form>
 
-	</div>
+  <script>
+    if(location.search.substring(1))
+    {
+      document.getElementById("error").innerHTML =
+        "Wrong username or password, please try again";
+    }
+  </script>
+
     <div class="footer">
         <div class="container">
                <p>&copy; ApNow 2018</p>

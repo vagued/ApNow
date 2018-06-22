@@ -31,7 +31,7 @@ if(empty($row))
 	// echo 'if ((new Date().getTime() - start) > 2000){';
   //     	echo 'break;}}';
 
-	echo 'window.location.href = "../html/login.html";';
+	echo 'window.location.href = "../html/login.html?retry";';
 	echo '</script>';
 }
 else

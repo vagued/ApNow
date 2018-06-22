@@ -17,8 +17,8 @@ $result2 = db_query("
   "(" .
     "(SELECT count(*) FROM rentings " .
     "WHERE rentings.idapartment=$idapartment " .
-    "AND rentings.checkin >= '$checkin' " .
-    "AND rentings.checkout <= '$checkout'" .
+    "AND rentings.checkin <= '$checkin' " .
+    "AND rentings.checkout >= '$checkout'" .
   ")=0," .
   "'1', '0')"
 );
@@ -36,6 +36,9 @@ $r1=$row[0];
 mysqli_data_seek($result2,1);
 $row=mysqli_fetch_row($result2);
 $r2=$row[0];
+
+// echo $r1;
+// echo $r2;
 
 if($r1&&$r2)
 {
