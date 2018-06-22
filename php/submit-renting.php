@@ -2,13 +2,13 @@
 
 require_once('dbConnect.php');
 
-$idclient = $_REQUEST["idclient"];
-$idapartment = $_REQUEST["idapartment"];
-$checkin = $_REQUEST["checkin"];
-$checkout = $_REQUEST["checkout"];
+$idapartment = $_GET["ida"];
+$idclient = $_GET["idc"];
+$checkin = date('Y-m-d', strtotime($_GET["cin"]));
+$checkout = date('Y-m-d', strtotime($_GET["cout"]));
 
 $result1 = db_query("
-  SELECT apartments.checkin <= '$checkin' AND apartments.checkout >= '$checkout " .
+  SELECT apartments.checkin <= '$checkin' AND apartments.checkout >= '$checkout' " .
   "FROM apartments " .
   "WHERE apartments.idapartment=$idapartment");
 
@@ -16,7 +16,7 @@ $result2 = db_query("
   SELECT IF" .
   "(" .
     "(SELECT count(*) FROM rentings " .
-    "WHERE rentings.idapartment=$idapartment" .
+    "WHERE rentings.idapartment=$idapartment " .
     "AND rentings.checkin >= '$checkin' " .
     "AND rentings.checkout <= '$checkout'" .
   ")=0," .
@@ -31,11 +31,11 @@ if($result2 === false)
 
 mysqli_data_seek($result1,1);
 $row=mysqli_fetch_row($result1);
-$r1=row[0];
+$r1=$row[0];
 
 mysqli_data_seek($result2,1);
 $row=mysqli_fetch_row($result2);
-$r2=row[0];
+$r2=$row[0];
 
 if($r1&&$r2)
 {
