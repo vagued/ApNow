@@ -60,15 +60,19 @@
          xmlhttp.open("GET", "../php/return-apartment.php?q=" + apartmentid, true);
   			 xmlhttp.send();
 
+         alert(1);
+
          function book()
          {
            var xmlhttp = new XMLHttpRequest();
+
+           alert(2);
 
            xmlhttp.onreadystatechange = function()
            {
              if (this.readyState == 4 && this.status == 200)
              {
-               alert("1");
+               alert(3);
                if(this.responseText == 0) {
                 document.getElementById("error").innerHTML =
                   "Dates selected not available, please choose others";
@@ -93,6 +97,8 @@
             true);
 
           xmlhttp.send();
+
+          alert(4);
          }
        </script>
 

@@ -33,17 +33,14 @@
          </div>
        </div>
        <script>
-	   document.getElementById("pic").setAttribute("src",'../img/clients/' + sessionStorage.idClient + '.' + sessionStorage.extension);
-           document.getElementById("username").innerHTML = sessionStorage.idClient;
-           document.getElementById("firstname").innerHTML =sessionStorage.firstname;
-           document.getElementById("lastname").innerHTML = sessionStorage.lastname;
-	   document.getElementById("email").innerHTML = sessionStorage.email;   
-         };
+    	   document.getElementById("pic").setAttribute("src",'../img/clients/' + sessionStorage.idClient + '.' + sessionStorage.extension);
+         document.getElementById("username").innerHTML = sessionStorage.username;
+         document.getElementById("firstname").innerHTML =sessionStorage.firstName;
+         document.getElementById("lastname").innerHTML = sessionStorage.lastName;
+    	   document.getElementById("email").innerHTML = sessionStorage.email;
+        </script>
 
-   
-                </script>
-	   
-       
+
 
                      <p>Rate me:</p>
 
@@ -52,8 +49,8 @@
                      <span class="fa fa-star"></span>
                      <span class="fa fa-star"></span>
                      <span class="fa fa-star"></span>
-					 
-	   
+
+
 	   <div class="footer">
            <div class="container">
                <p>&copy; ApNow 2018</p>

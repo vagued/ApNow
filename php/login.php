@@ -39,6 +39,7 @@ else
 	echo '<!DOCTYPE HTML><html><body>Logged in. Redirecting...';
 	echo '<script>';
 	echo 'sessionStorage.idClient = ' . json_encode($row[0]) . ';';
+	echo 'sessionStorage.username = ' . json_encode($row[1]) . ';';
 	echo 'sessionStorage.firstName = ' . json_encode($row[3]) . ';';
 	echo 'sessionStorage.lastName = ' . json_encode($row[4]) . ';';
 	echo 'sessionStorage.email = ' . json_encode($row[5]) . ';';
