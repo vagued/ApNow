@@ -260,7 +260,7 @@ select-items {
   font-family:'Roboto Condensed', sans-serif;
 }
 
-#profile-navbar a{
+#profile-navbar button{
   float: right;
   color: black;
   text-align: center;
@@ -275,7 +275,7 @@ select-items {
 
 }
 
-#profile-navbar a:hover{
+#profile-navbar button:hover{
   background-color: #fff;
   color: black;
   border-radius: 15px;
