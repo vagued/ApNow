@@ -19,15 +19,15 @@
     	</header>
 
 		   <div class="apartment">
-               <img id="photo" src="https://image.flaticon.com/icons/svg/149/149064.svg" />
-               <h1 id="title">Title</h1>
-               <h2 id="description">Description </h2>
-               <h2 id="location">Location</h2>
+         <img id="photo" src="https://image.flaticon.com/icons/svg/149/149064.svg" />
+         <h1 id="title">Title</h1>
+         <h2 id="description">Description </h2>
+         <h2 id="location">Location</h2>
 
-			   <label for = "check in"> Check in: </label>
+			   <label for = "check in">Check in: </label>
 			   <input type = "date" id = "checkin" id = "check in"><br>
 
-			  <label for = "check out"> Check out: </label>
+			  <label for = "check out">Check out: </label>
 			  <input type = "date" id = "checkout" id = "check out"><br>
 
         <input type = "submit" value = "Book" onClick="book();"><br>
@@ -64,13 +64,11 @@
          {
            var xmlhttp = new XMLHttpRequest();
 
-           alert("in1");
-
            xmlhttp.onreadystatechange = function()
            {
              if (this.readyState == 4 && this.status == 200)
              {
-               alert(this.responseText);
+               // alert(this.responseText);
                if(this.responseText == 0) {
                 document.getElementById("error").innerHTML =
                   "Dates selected not available, please choose others";

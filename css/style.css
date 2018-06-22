@@ -1,5 +1,3 @@
-
-
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
 
 p, h1, label {
@@ -107,6 +105,10 @@ input{
   margin-left: 13%;
 }
 
+#error
+{
+	color: red;
+}
 
 input[type=submit] {
        width: 150px;

@@ -17,8 +17,8 @@ $result2 = db_query("
   "(" .
     "(SELECT count(*) FROM rentings " .
     "WHERE rentings.idapartment=$idapartment " .
-    "AND rentings.checkin > '$checkin' " .
-    "AND rentings.checkout < '$checkout'" .
+    "AND rentings.checkin >= '$checkin' " .
+    "AND rentings.checkout <= '$checkout'" .
   ")=0," .
   "'1', '0')"
 );
