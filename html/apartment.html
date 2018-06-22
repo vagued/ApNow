@@ -37,7 +37,7 @@
 
        <script>
 
-         var apartmentid = location.search.substring(1);
+         var idapartment = location.search.substring(1);
 
          var xmlhttp, apartments, x, grid_html = "";
 
@@ -48,7 +48,7 @@
              apartment = JSON.parse(this.responseText);
 
            document.getElementById("photo").setAttribute("src",
-           '../img/apartments/' + apartment[0].idapartment + '.' + apartment[0].extension);
+           '../img/apartments/' + idapartment + '.' + apartment[0].extension);
 
            document.getElementById("title").innerHTML = apartment[0].title;
 
@@ -57,48 +57,38 @@
            document.getElementById("location").innerHTML = apartment[0].location;
          };
 
-         xmlhttp.open("GET", "../php/return-apartment.php?q=" + apartmentid, true);
+         xmlhttp.open("GET", "../php/return-apartment.php?q=" + idapartment, true);
   			 xmlhttp.send();
-
-         alert(1);
 
          function book()
          {
            var xmlhttp = new XMLHttpRequest();
 
-           alert(2);
+           alert("in1");
 
            xmlhttp.onreadystatechange = function()
            {
              if (this.readyState == 4 && this.status == 200)
              {
-               alert(3);
+               alert(this.responseText);
                if(this.responseText == 0) {
                 document.getElementById("error").innerHTML =
                   "Dates selected not available, please choose others";
                 }
                 else
                 {
-                  window.location.href = "../html/profile.html";
+                  window.location.href = "profile.html";
                 }
               }
            };
 
-           // alert(
-           //   "../php/submit-renting.php?ida=" + idapartment
-           //   + "&idc=" + sessionStorage.idclient
-           //   + "&cin=" + document.getElementById("checkin").value
-           //   + "&cout=" + document.getElementById("checkout").value);
-
           xmlhttp.open("GET","../php/submit-renting.php?ida=" + idapartment +
-            "&idc=" + sessionStorage.idclient +
+            "&idc=" + sessionStorage.idClient +
             "&cin=" + document.getElementById("checkin").value +
             "&cout=" + document.getElementById("checkout").value,
             true);
 
           xmlhttp.send();
-
-          alert(4);
          }
        </script>
 
