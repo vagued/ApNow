@@ -26,51 +26,57 @@
          <h2 id = "lastname"> Last name: Doe</h2>
          <h2 id = "email"> Email: example@domain.com</h2>
 			   <div id = "profile-navbar">
-           <button onclick = "myFunction" > History </button>
+           <button onclick = "showHistory();" > History </button>
            <button onclick = "myFunction" > Upcoming </button>
            <button onclick = "myFunction" > My Apartments </button>
-		   
+
 		   <p id="history"></p>
 		   <p id="upcoming"></p>
 		   <p id="myapartments"></p>
-		   
+
 	      </div>
          </div>
        </div>
-       <script>
-    	   document.getElementById("pic").setAttribute("src",'../img/clients/' + sessionStorage.idClient + '.' + sessionStorage.extension);
-           document.getElementById("username").innerHTML = sessionStorage.username;
-           document.getElementById("firstname").innerHTML =sessionStorage.firstName;
-           document.getElementById("lastname").innerHTML = sessionStorage.lastName;
-    	   document.getElementById("email").innerHTML = sessionStorage.email;
-		   
-		   function myFunction(){
-		       var xmlhttp, apartments, x, list_html = "";
-			   xmlhttp = new XMLHttpRequest();
-			   xmlhttp.onreadystatechange = function() {
-				   if (this.readyState == 4 && this.status == 200) {
-                       apartments = JSON.parse(this.responseText);
-					  
-					  var out = <table>;
 
-                       for( x in apartments ) {
-                           out += <tr><td> + 
-                               x.title +
-                          </td><td> +
-                               x.checkin +
-                          "</td><td>" +
-                               x.checkout+
-                          "</td></tr>";
-                      };
-                     out += </table>;
-	                 document.getElementById("history").innerHTML = out;
-				}
-			}
-				xmlhttp.open("GET", "../php/return-apartments.php?q=All", true);
-			    xmlhttp.send();
-						
-		   }
-		   
+       <script>
+
+      	   document.getElementById("pic").setAttribute("src",'../img/clients/' + sessionStorage.idClient + '.' + sessionStorage.extension);
+             document.getElementById("username").innerHTML = sessionStorage.username;
+             document.getElementById("firstname").innerHTML =sessionStorage.firstName;
+             document.getElementById("lastname").innerHTML = sessionStorage.lastName;
+      	   document.getElementById("email").innerHTML = sessionStorage.email;
+        </script>
+
+         <script>
+    		   function showHistory() {
+
+  		       var xmlhttp, apartments, out = "";
+    			   xmlhttp = new XMLHttpRequest();
+    			   xmlhttp.onreadystatechange = function() {
+
+    				   if (this.readyState == 4 && this.status == 200) {
+                           apartments = JSON.parse(this.responseText);
+
+               out = "<table>";
+
+                 for(x in apartments) {
+                     out += "<tr><td>" +
+                         apartments[x].title +
+                    "</td><td>" +
+                         apartments[x].checkin +
+                    "</td><td>" +
+                         apartments[x].checkout+
+                    "</td></tr>";
+                };
+               out += "</table>";
+             document.getElementById("history").innerHTML = out;
+    				}
+    			}
+
+    				xmlhttp.open("GET", "../php/return-history.php?q=" + sessionStorage.idClient, true);
+  			    xmlhttp.send();
+  		   }
+
         </script>
 
 
