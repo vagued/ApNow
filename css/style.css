@@ -1,3 +1,7 @@
+
+
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+
 p, h1, label {
 	color: #fff;
 }
@@ -313,7 +317,6 @@ select-items {
   line-height: 22px;
   font-family: 'Roboto Condensed', sans-serif;
   color: #fff;
-
 
 
 .footer p {
