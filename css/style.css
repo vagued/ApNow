@@ -1,3 +1,7 @@
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Lobster+Two:400,700);
+
 p, h1, label {
 	color: #fff;
 }
