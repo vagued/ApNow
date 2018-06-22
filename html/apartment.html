@@ -56,7 +56,30 @@
 
 			  <label for = "check out"> Check out: </label>
 			  <input type = "date" name = "checkout" id = "check out"><br>
+
+        <input type = "submit" value = "Log in" onclick="send()"><br>
 		   </div>
+
+       <script>
+
+         xmlhttp = new XMLHttpRequest();
+         xmlhttp.onreadystatechange = function()
+         {
+           if (this.readyState == 4 && this.status == 200)
+             if(this.responseText == 0)
+              document.getElementById("error").innerHTML =
+                "Dates selected not available, please choose others";
+
+              else
+              {
+                window.location.href = "../html/profile.html";
+              }
+         };
+
+        xmlhttp.open("GET", "../php/return-apartment.php?q=" + apartmentid, true);
+        xmlhttp.send();
+
+       </script>
 
 	   <div class="footer">
            <div class="container">
@@ -65,6 +88,3 @@
       </div>
 	</body>
 </html>
-
-
-<!-- https://www.xul.fr/javascript/parameters.php?submit=Return -->

@@ -17,7 +17,7 @@ $result2 = db_query("
   "(" .
     "(SELECT count(*) FROM rentings " .
     "WHERE rentings.idapartment=$idapartment" .
-    "AND rentings.checkin >= '$checkin'" .
+    "AND rentings.checkin >= '$checkin' " .
     "AND rentings.checkout <= '$checkout'" .
   ")=0," .
   "'1', '0')"
@@ -42,8 +42,8 @@ if($r1&&$r2)
   echo 1;
 
   $result3 = db_query("" .
-    "INSERT INTO apartments (idclient, title, location, description, checkin, checkout, extension)
-      VALUES ('$idclient','$title','$location','$description','$checkin','$checkout','$extension')");
+    "INSERT INTO rentings (idclient, idapartment, checkin, checkout)
+      VALUES ('$idclient','$idapartment','$checkin','$checkout')");
 
   if($result3 === false)
       echo "Failed to insert #3\n";
