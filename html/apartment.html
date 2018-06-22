@@ -52,20 +52,25 @@
                <h2 id="location">Location</h2>
 
 			   <label for = "check in"> Check in: </label>
-			   <input type = "date" name = "checkin" id = "check in"><br>
+			   <input type = "date" id = "checkin" id = "check in"><br>
 
 			  <label for = "check out"> Check out: </label>
-			  <input type = "date" name = "checkout" id = "check out"><br>
+			  <input type = "date" id = "checkout" id = "check out"><br>
 
-        <input type = "submit" value = "Log in" onclick="send()"><br>
+        <input type = "submit" value = "Book" onclick="send()"><br>
+
+        <label id="error"></label>
 		   </div>
 
        <script>
-
+       function send()
+       {
          xmlhttp = new XMLHttpRequest();
          xmlhttp.onreadystatechange = function()
          {
            if (this.readyState == 4 && this.status == 200)
+           {
+
              if(this.responseText == 0)
               document.getElementById("error").innerHTML =
                 "Dates selected not available, please choose others";
@@ -76,9 +81,15 @@
               }
          };
 
-        xmlhttp.open("GET", "../php/return-apartment.php?q=" + apartmentid, true);
-        xmlhttp.send();
+        xmlhttp.open("GET",
+          "../php/submit-renting.php?aid=" + apartmentid
+          + "&cid=" + sessionStorage.clientid
+          + "&cin=" + document.getElementById("checkin").value
+          + "&cout=" + document.getElementById("checkout").value,
+          true);
 
+        xmlhttp.send();
+       }
        </script>
 
 	   <div class="footer">
