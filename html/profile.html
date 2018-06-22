@@ -32,13 +32,12 @@
 	      </div>
          </div>
        </div>
-
-		<script>
-			    document.getElementById("photo").setAttribute("src",
-           '../img/apartments/' + apartment[0].idapartment + '.' + apartment[0].extension);
-           document.getElementById("title").innerHTML = apartment[0].title;
-           document.getElementById("description").innerHTML = apartment[0].description;
-           document.getElementById("location").innerHTML = apartment[0].location;
+       <script>
+	   document.getElementById("pic").setAttribute("src",'../img/clients/' + sessionStorage.idClient + '.' + sessionStorage.extension);
+           document.getElementById("username").innerHTML = sessionStorage.idClient;
+           document.getElementById("firstname").innerHTML =sessionStorage.firstname;
+           document.getElementById("lastname").innerHTML = sessionStorage.lastname;
+	   document.getElementById("email").innerHTML = sessionStorage.email;   
          };
 
    
