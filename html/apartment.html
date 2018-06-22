@@ -34,6 +34,7 @@
 
         <label id="error"></label>
 		   </div>
+
        <script>
 
          var apartmentid = location.search.substring(1);
@@ -56,7 +57,7 @@
            document.getElementById("location").innerHTML = apartment[0].location;
          };
 
-        xmlhttp.open("GET", "../php/return-apartment.php?q=" + apartmentid, true);
+         xmlhttp.open("GET", "../php/return-apartment.php?q=" + apartmentid, true);
   			 xmlhttp.send();
 
          function book()
@@ -67,7 +68,7 @@
            {
              if (this.readyState == 4 && this.status == 200)
              {
-
+               alert("1");
                if(this.responseText == 0) {
                 document.getElementById("error").innerHTML =
                   "Dates selected not available, please choose others";
@@ -79,11 +80,16 @@
               }
            };
 
-          xmlhttp.open("GET",
-            "../php/submit-renting.php?ida=" + idapartment
-            + "&idc=" + sessionStorage.idclient
-            + "&cin=" + document.getElementById("checkin").value
-            + "&cout=" + document.getElementById("checkout").value,
+           // alert(
+           //   "../php/submit-renting.php?ida=" + idapartment
+           //   + "&idc=" + sessionStorage.idclient
+           //   + "&cin=" + document.getElementById("checkin").value
+           //   + "&cout=" + document.getElementById("checkout").value);
+
+          xmlhttp.open("GET","../php/submit-renting.php?ida=" + idapartment +
+            "&idc=" + sessionStorage.idclient +
+            "&cin=" + document.getElementById("checkin").value +
+            "&cout=" + document.getElementById("checkout").value,
             true);
 
           xmlhttp.send();
