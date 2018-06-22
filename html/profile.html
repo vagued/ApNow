@@ -20,11 +20,11 @@
 
 	   <div class = "main">
 		   <div class="profile">
-         <img src="http://image005.flaticon.com/1/svg/145/145867.svg" />
-         <h1>Username</h1>
-         <h2>First name: John </h2>
-         <h2>Last name: Doe</h2>
-         <h2>Email: example@domain.com</h2>
+         <img id = "pic" src="http://image005.flaticon.com/1/svg/145/145867.svg" />
+         <h1 id = "username"> Username</h1>
+         <h2 id = "firstname"> First name: John </h2>
+         <h2 id = "lastname"> Last name: Doe</h2>
+         <h2 id = "email"> Email: example@domain.com</h2>
 			   <div id = "profile-navbar">
            <a href = " " id = "history"> History </a>
            <a href = " " id = "upcoming"> Upcoming </a>
@@ -34,9 +34,15 @@
        </div>
 
 		<script>
-    alert("test");
-      document.getElementsByTagName[0]("img").setAttribute("src", "../images/clients/" + sessionStorage.clientid "." + sessionStorage.extension + '"');
-    </script>
+			    document.getElementById("photo").setAttribute("src",
+           '../img/apartments/' + apartment[0].idapartment + '.' + apartment[0].extension);
+           document.getElementById("title").innerHTML = apartment[0].title;
+           document.getElementById("description").innerHTML = apartment[0].description;
+           document.getElementById("location").innerHTML = apartment[0].location;
+         };
+
+   
+                </script>
 	   
        
 
