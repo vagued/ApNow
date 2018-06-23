@@ -2,10 +2,13 @@
 
 require_once('dbConnect.php');
 
-$idrenting = $_REQUEST["idrenting"];
+$idrenting = $_REQUEST["idr"];
+$rating = $_REQUEST["rating"];
+$comment = $_REQUEST["comment"];
 
-$result = db_query("INSERT INTO clients (username, password, firstname, lastname, email)
-  VALUES ('$username','$password','$firstname','$lastname','$email')");
+$result = db_query("UPDATE rentings
+  SET rating=$rating, comment=$comment
+  WHERE idrenting=$idrenting");
 
 if($result === false)
     echo "Failed to insert\n";

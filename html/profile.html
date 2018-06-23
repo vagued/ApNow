@@ -21,14 +21,14 @@
 	   <div class = "main">
 		   <div class="profile">
          <img id = "pic" src="http://image005.flaticon.com/1/svg/145/145867.svg" />
-         <h1 id = "username"> Username</h1>
-         <h2 id = "firstname"> First name: John </h2>
-         <h2 id = "lastname"> Last name: Doe</h2>
-         <h2 id = "email"> Email: example@domain.com</h2>
+         <h1 id = "username">Username</h1>
+         <h2 id = "firstname">First name: John </h2>
+         <h2 id = "lastname">Last name: Doe</h2>
+         <h2 id = "email">Email: example@domain.com</h2>
 			   <div id = "profile-navbar">
-           <button onclick = "showHistory();" > History </button>
-           <button onclick = "myFunction" > Upcoming </button>
-           <button onclick = "myFunction" > My Apartments </button>
+           <button onclick = "showHistory();" >History</button>
+           <button onclick = "showUpcoming();" >Upcoming</button>
+           <button onclick = "showUserApartments();" >My Apartments</button>
 
 		   <p id="history"></p>
 		   <p id="upcoming"></p>
@@ -39,12 +39,12 @@
        </div>
 
        <script>
-
-      	   document.getElementById("pic").setAttribute("src",'../img/clients/' + sessionStorage.idClient + '.' + sessionStorage.extension);
-             document.getElementById("username").innerHTML = sessionStorage.username;
-             document.getElementById("firstname").innerHTML =sessionStorage.firstName;
-             document.getElementById("lastname").innerHTML = sessionStorage.lastName;
-      	   document.getElementById("email").innerHTML = sessionStorage.email;
+    	   document.getElementById("pic").setAttribute("src",'../img/clients/'
+          + sessionStorage.idClient + '.' + sessionStorage.extension);
+         document.getElementById("username").innerHTML = sessionStorage.username;
+         document.getElementById("firstname").innerHTML =sessionStorage.firstName;
+         document.getElementById("lastname").innerHTML = sessionStorage.lastName;
+    	   document.getElementById("email").innerHTML = sessionStorage.email;
         </script>
 
          <script>
@@ -52,6 +52,7 @@
 
   		       var xmlhttp, apartments, out = "";
     			   xmlhttp = new XMLHttpRequest();
+
     			   xmlhttp.onreadystatechange = function() {
 
     				   if (this.readyState == 4 && this.status == 200) {
@@ -77,18 +78,75 @@
   			    xmlhttp.send();
   		   }
 
-        </script>
+         function showUpcoming() {
 
+           var xmlhttp, apartments, out = "";
+           xmlhttp = new XMLHttpRequest();
 
+           xmlhttp.onreadystatechange = function() {
 
-                     <p>Rate me:</p>
+             if (this.readyState == 4 && this.status == 200) {
+                         apartments = JSON.parse(this.responseText);
 
-                     <span class="fa fa-star"></span>
-                     <span class="fa fa-star"></span>
-                     <span class="fa fa-star"></span>
-                     <span class="fa fa-star"></span>
-                     <span class="fa fa-star"></span>
+             out = "<table>";
 
+               for(x in apartments) {
+                   out += "<tr><td>" +
+                       apartments[x].title +
+                  "</td><td>" +
+                       apartments[x].checkin +
+                  "</td><td>" +
+                       apartments[x].checkout+
+                  "</td></tr>";
+              };
+             out += "</table>";
+           document.getElementById("history").innerHTML = out;
+          }
+        }
+
+          xmlhttp.open("GET", "../php/return-upcoming.php?q=" + sessionStorage.idClient, true);
+          xmlhttp.send();
+       }
+
+       function showClientApartments() {
+
+         var xmlhttp, apartments, out = "";
+         xmlhttp = new XMLHttpRequest();
+
+         xmlhttp.onreadystatechange = function() {
+
+           if (this.readyState == 4 && this.status == 200) {
+                       apartments = JSON.parse(this.responseText);
+
+           out = "<table>";
+
+             for(x in apartments) {
+                 out += "<tr><td>" +
+                     apartments[x].title +
+                "</td><td>" +
+                     apartments[x].checkin +
+                "</td><td>" +
+                     apartments[x].checkout+
+                "</td></tr>";
+            };
+           out += "</table>";
+         document.getElementById("history").innerHTML = out;
+        }
+      }
+
+        xmlhttp.open("GET", "../php/return-client-apartments.php?q=" + sessionStorage.idClient, true);
+        xmlhttp.send();
+     }
+
+    </script>
+
+     <p>Rate me:</p>
+
+     <span class="fa fa-star"></span>
+     <span class="fa fa-star"></span>
+     <span class="fa fa-star"></span>
+     <span class="fa fa-star"></span>
+     <span class="fa fa-star"></span>
 
 	   <div class="footer">
            <div class="container">

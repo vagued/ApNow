@@ -21,16 +21,7 @@ $row = mysqli_fetch_array($result);
 
 if(empty($row))
 {
-	echo 'Invalid credidentials, please try again.';
-	echo '\nReloading...';
-
 	echo '<script>';
-
-	// echo 'var start = new Date().getTime();';
-	// echo '  for (var i = 0; i < 1e7; i++) {';
-	// echo 'if ((new Date().getTime() - start) > 2000){';
-  //     	echo 'break;}}';
-
 	echo 'window.location.href = "../html/login.html?retry";';
 	echo '</script>';
 }
