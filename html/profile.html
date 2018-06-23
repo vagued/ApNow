@@ -49,7 +49,7 @@
          <script>
     		   function showHistory() {
 
-  		       var xmlhttp, apartments, out = "";
+  		       var xmlhttp, apartments, count, out = "";
 
     			   xmlhttp = new XMLHttpRequest();
 
@@ -60,6 +60,9 @@
                {
                  apartments = JSON.parse(this.responseText);
                  out = "<table>";
+
+                 count=1;
+
                    for(x in apartments)
                    {
                        out +=
@@ -69,24 +72,39 @@
                              apartments[x].checkin +
                         "</td><td>" +
                              apartments[x].checkout +
-                        "</td>" +
+                        "</td><td>";
 
-                        '<td>' +
+                        if(apartments[x].rating==null)
+                        {
+                          out +=
 
-                           '<span class="fa fa-star" value="1" onclick="rate('
-                              + apartments[x].idrenting + '", this.value);></span>' +
-                          '<span class="fa fa-star" value="2" onclick="rate('
-                               + apartments[x].idrenting + '", this.value);></span>' +
-                           '<span class="fa fa-star" value="3" onclick="rate('
-                              + apartments[x].idrenting + '", this.value);></span>' +
-                          '<span class="fa fa-star" value="4" onclick="rate('
-                               + apartments[x].idrenting + '", this.value);></span>' +
-                           '<span class="fa fa-star" value="5" onclick="rate('
-                              + apartments[x].idrenting + '", this.value);></span>' +
+                             '<span class="fa fa-star" id="1" onclick="rate(' +
+                                + apartments[x].idrenting + ', this.id);"></span>' +
+                            '<span class="fa fa-star" id="2" onclick="rate(' +
+                                 + apartments[x].idrenting + ', this.id);"></span>' +
+                             '<span class="fa fa-star" id="3" onclick="rate(' +
+                                + apartments[x].idrenting + ', this.id);"></span>' +
+                            '<span class="fa fa-star" id="4" onclick="rate(' +
+                                 + apartments[x].idrenting + ', this.id);"></span>' +
+                             '<span class="fa fa-star" id="5" onclick="rate(' +
+                                + apartments[x].idrenting + ', this.id);"></span>' +
 
-                         '</td></tr>';
+                            '<textarea id=' + count + '></textarea>' +
+
+                            '<button value=' + count + ' id="' + count + 'b" onclick="insertRating(this.id);">Press to submit rating</button>';
+
+                            count++;
+                        }
+                        else
+                        {
+                          out += apartments[x].rating + " stars";
+                        }
+
+                        out += '</td></tr>';
                     }
+
                  out += "</table>";
+
                document.getElementById("history").innerHTML = out;
     				}
     			};
@@ -94,18 +112,65 @@
   			    xmlhttp.send();
   		   }
 
+        //  for(i=1;i<=count;i++)
+        //  {
+        //    document.getElementById(i).input.addEventListener("keyup", function(event)
+        //    {
+        //         event.preventDefault();
+        //         if (event.keyCode === 13) {
+        //           document.getElemendById.(i+"b").click();
+        //         }
+        //     };
+        // }
+
          function rate(idrenting,rating)
          {
-
+           sessionStorage.idrenting = idrenting;
+           sessionStorage.rating = rating;
          }
 
-    		 span.onclick = function() {
-              document.getElementsByClass("fa fa-star.style.color").setAttribute("style", "color: yellow;");
-         };
+          function insertRating(i)
+          {
+            if(sessionStorage.rating != null)
+            {
+              var id=document.getElementById(i).value;
+              var comment = document.getElementById(id).value;
+              console.log(id);
+
+              var xmlhttp, apartment;
+
+         			xmlhttp = new XMLHttpRequest();
+
+         			xmlhttp.onreadystatechange = function()
+               {
+          			  if (this.readyState == 4 && this.status == 200)
+                    if(this.responseText==0)
+                    {
+                      alert("Some error");
+                    }
+                    else
+                    {
+                      alert("OK");
+                    }
+               };
+
+              xmlhttp.open("GET", "../php/submit-rating.php?idr=" + sessionStorage.idrenting
+              + "&rating=" + sessionStorage.rating
+              + "&comment=" + comment, true);
+       			  xmlhttp.send();
+
+              sessionStorage.removeItem("rating");
+              sessionStorage.removeItem("idrenting");
+
+              document.getElementById(i).disabled = true;
+          }
+          else
+          {
+            alert("Please select a rating first");
+          }
+        }
 
       </script>
-
-
 
 
 	   <div class="footer">

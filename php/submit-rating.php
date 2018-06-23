@@ -6,11 +6,22 @@ $idrenting = $_REQUEST["idr"];
 $rating = $_REQUEST["rating"];
 $comment = $_REQUEST["comment"];
 
-$result = db_query("UPDATE rentings
-  SET rating=$rating, comment=$comment
-  WHERE idrenting=$idrenting");
+if(empty($comment))
+{
+  $result = db_query("UPDATE rentings
+    SET rating=$rating
+    WHERE idrenting=$idrenting");
+}
+
+else {
+  $result = db_query("UPDATE rentings
+    SET rating=$rating, comment=$comment
+    WHERE idrenting=$idrenting");
+}
 
 if($result === false)
-    echo "Failed to insert\n";
+  echo 0;
+else
+  echo 1;
 
 ?>

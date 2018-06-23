@@ -25,19 +25,26 @@
          <h2 id="location">Location</h2>
          <p>Average rating:</p><h2 id="rating">-</h2>
 
-			   <label for = "check in">Check in: </label>
-			   <input type = "date" id = "checkin" id = "check in"><br>
 
-			  <label for = "check out">Check out: </label>
-			  <input type = "date" id = "checkout" id = "check out"><br>
+  			  <label for = "check in">Check in: </label>
+  			  <input type = "date" id = "checkin" id = "check in"><br>
 
-        <input type = "submit" value = "Book" onClick="book();"><br>
+  			  <label for = "check out">Check out: </label>
+  			  <input type = "date" id = "checkout" id = "check out"><br>
 
-        <label id="error"></label>
+          <input type = "submit" value = "Book" onClick="book();"><br>
+
+          <label id="error"></label>
+        </div>
 
         <p id="comments"></p>
 
-		   </div>
+       <script>
+         if(sessionStorage.login == 0)
+   			{
+   				document.getElementById("optional").innerHTML = "";
+   			}
+        </script>
 
        <script>
 

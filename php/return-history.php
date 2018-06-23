@@ -4,7 +4,7 @@ require_once('dbConnect.php');
 
 $idclient = $_REQUEST["q"];
 
-$result = db_query("SELECT title, rentings.idrenting, rentings.checkin, rentings.checkout
+$result = db_query("SELECT title, rentings.idrenting, rentings.checkin, rentings.checkout, rentings.rating
 	FROM apartments, rentings
 	WHERE rentings.idclient='$idclient'
 		AND rentings.idapartment=apartments.idapartment
