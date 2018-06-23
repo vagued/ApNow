@@ -4,8 +4,7 @@ require_once('dbConnect.php');
 
 $id = $_REQUEST["q"];
 
-$result = db_query('SELECT * FROM apartments
-		WHERE idapartment="' . $id . '"');
+$result = db_query("SELECT * FROM apartments WHERE idapartment=$id");
 
 $rows = mysqli_num_rows($result);
 $myArray = array();

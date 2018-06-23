@@ -17,6 +17,11 @@
 
     	</header>
 
+      <script>
+        if(location.search.substring(1))
+          sessionStorage.login = 0;
+      </script>
+
 
 		<select id="myselect" onchange="change_myselect(this.value)">
 			<option value="">Choose your destination:</option>
@@ -31,14 +36,14 @@
 		<script>
       if(sessionStorage.login == 1)
 			{
-				document.getElementById("login").setAttribute("href", "homepage.html");
+				document.getElementById("login").setAttribute("href", "homepage.html?logout");
 				document.getElementById("login").innerHTML = "Logout";
+        document.getElementById(" signup").innerHTML = "";
 
 				var div = document.getElementById("navbar2");
 				div.innerHTML += '<a href="upload-apartment.html">Upload apartment</a>';
 				div.innerHTML += '<a href="profile.html">My profile</a>';
 
-				sessionStorage.login = 0;
 			}
        </script>
 

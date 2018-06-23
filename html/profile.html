@@ -11,7 +11,7 @@
     	<header>
     	   <div class = "navbar">
 		            <a href = "homepage.html" id = "logo"> <img src = "../img/logo.png"> </a>
-                	<a href = " " id = "logout">Log out</a>
+                	<a href = "homepage.html?logout" id = "logout">Log out</a>
                 	<a href = " " id = "help">Help!</a>
                 	<a href = "uploadform.html" id = "upload">Upload</a>
 					<div id="navbar2"></div>
@@ -27,8 +27,8 @@
          <h2 id = "email"> Email: example@domain.com</h2>
 			   <div id = "profile-navbar">
            <button onclick = "showHistory();" > History </button>
-           <button onclick = "myFunction" > Upcoming </button>
-           <button onclick = "myFunction" > My Apartments </button>
+           <button onclick = "showUpcoming();" > Upcoming </button>
+           <button onclick = "showClientApartments();" > My Apartments </button>
 
 		   <p id="history"></p>
 		   <p id="upcoming"></p>
@@ -48,43 +48,62 @@
 
          <script>
     		   function showHistory() {
-  		       var xmlhttp, apartments, out = "";
-    			   xmlhttp = new XMLHttpRequest();
-    			   xmlhttp.onreadystatechange = function() {
-    				   if (this.readyState == 4 && this.status == 200) {
-                           apartments = JSON.parse(this.responseText);
-               out = "<table>";
-                 for(x in apartments) {
-                     out += "<tr><td>" +
-                         apartments[x].title +
-                    "</td><td>" +
-                         apartments[x].checkin +
-                    "</td><td>" +
-                         apartments[x].checkout+
-                    "</td></tr>"; +
 
-		    "<tr><td>"
-			     <p>Rate me:</p>
-                                 <span class="fa fa-star"></span>
-                                 <span class="fa fa-star"></span>
-                                 <span class="fa fa-star"></span>
-                                 <span class="fa fa-star"></span>
-                                 <span class="fa fa-star"></span>
-		   "</td> </tr>";
-                };
-               out += "</table>";
-             document.getElementById("history").innerHTML = out;
+  		       var xmlhttp, apartments, out = "";
+
+    			   xmlhttp = new XMLHttpRequest();
+
+    			   xmlhttp.onreadystatechange = function()
+             {
+
+    				   if (this.readyState == 4 && this.status == 200)
+               {
+                 apartments = JSON.parse(this.responseText);
+                 out = "<table>";
+                   for(x in apartments)
+                   {
+                       out +=
+                         "<tr><td>" +
+                             apartments[x].title +
+                        "</td><td>" +
+                             apartments[x].checkin +
+                        "</td><td>" +
+                             apartments[x].checkout +
+                        "</td>" +
+
+                        '<td>' +
+
+                           '<span class="fa fa-star" value="1" onclick="rate('
+                              + apartments[x].idrenting + '", this.value);></span>' +
+                          '<span class="fa fa-star" value="2" onclick="rate('
+                               + apartments[x].idrenting + '", this.value);></span>' +
+                           '<span class="fa fa-star" value="3" onclick="rate('
+                              + apartments[x].idrenting + '", this.value);></span>' +
+                          '<span class="fa fa-star" value="4" onclick="rate('
+                               + apartments[x].idrenting + '", this.value);></span>' +
+                           '<span class="fa fa-star" value="5" onclick="rate('
+                              + apartments[x].idrenting + '", this.value);></span>' +
+
+                         '</td></tr>';
+                    }
+                 out += "</table>";
+               document.getElementById("history").innerHTML = out;
     				}
-    			}
+    			};
     				xmlhttp.open("GET", "../php/return-history.php?q=" + sessionStorage.idClient, true);
   			    xmlhttp.send();
   		   }
 
+         function rate(idrenting,rating)
+         {
 
-		 span.onclick = function() {
-                      fa fa-star.style.color = "yellow";
-                 }
-        </script>
+         }
+
+    		 span.onclick = function() {
+              document.getElementsByClass("fa fa-star.style.color").setAttribute("style", "color: yellow;");
+         };
+
+      </script>
 
 
 

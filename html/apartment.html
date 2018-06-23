@@ -46,6 +46,7 @@
          var xmlhttp, apartment;
 
     			xmlhttp = new XMLHttpRequest();
+
     			xmlhttp.onreadystatechange = function()
           {
      			  if (this.readyState == 4 && this.status == 200)
@@ -64,6 +65,10 @@
           xmlhttp.open("GET", "../php/return-apartment.php?q=" + idapartment, true);
    			  xmlhttp.send();
 
+          </script>
+
+          <script>
+
           xmlhttp = new XMLHttpRequest();
     			xmlhttp.onreadystatechange = function()
           {
@@ -73,6 +78,10 @@
 
          xmlhttp.open("GET", "../php/return-avg-rating.php?q=" + idapartment, true);
   			 xmlhttp.send();
+
+         </script>
+
+         <script>
 
          xmlhttp = new XMLHttpRequest();
 
@@ -107,6 +116,10 @@
 
         xmlhttp.open("GET", "../php/return-comments.php?q=" + idapartment, true);
         xmlhttp.send();
+
+        </script>
+
+        <script>
 
          function book()
          {

@@ -4,10 +4,11 @@ require_once('dbConnect.php');
 
 $idclient = $_REQUEST["q"];
 
-$result = db_query("SELECT title, checkin, checkout FROM apartments, rentings
+$result = db_query("SELECT title, rentings.idrenting, rentings.checkin, rentings.checkout
+	FROM apartments, rentings
 	WHERE rentings.idclient='$idclient'
-		AND rentings.idapartment=apartment.idapartment
-		AND apartments.checkout<='" . date("Y/m/d") . "'");
+		AND rentings.idapartment=apartments.idapartment
+		AND rentings.checkout<='" . date("Y/m/d") . "'");
 
 $rows = mysqli_num_rows($result);
 $myArray = array();
