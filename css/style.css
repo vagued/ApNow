@@ -217,12 +217,12 @@ select-items {
 .profile {
   padding: 30px;
   margin: 30px auto;
-  height: 60%;
   width: 60%;
   min-width: 240px;
   text-align: center;
   background: rgba(10, 30, 50, 0.4) ;
   border-radius: 2px;
+	position: relative;
 }
 
 .profile img {
@@ -284,6 +284,7 @@ select-items {
   color: black;
   border-radius: 15px;
 }
+
 .apartment{
   padding: 30px;
   margin: 30px auto;

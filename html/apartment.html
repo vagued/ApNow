@@ -7,43 +7,50 @@
 
     </head>
     <body id = "def">
+      <header>
+         <div class = "navbar">
+                  <a href = "" id = "logo"> <img src = "../img/logo.png"> </a>
+                  <a href = "login.html" id = "login"> Login </a>
+                  <a href = "signup.html" id = "signup"> Sign Up </a>
+          <div id="navbar2"></div>
+           </div>
+      </header>
 
-		<header>
-    	   <div class = "navbar">
-		            <a href = "homepage.html" id = "logo"> <img src = "../img/logo.png"> </a>
-                	<a href = " " id = "logout">Log out</a>
-                	<a href = " " id = "help">Help!</a>
-                	<a href = "uploadform.html" id = "upload">Upload</a>
-					<div id="navbar2"></div>
-         </div>
-    	</header>
+		   <div id="extra" class="apartment">
 
-		   <div class="apartment">
          <img id="photo" src="https://image.flaticon.com/icons/svg/149/149064.svg" />
          <h1 id="title">Title</h1>
          <h2 id="description">Description </h2>
          <h2 id="location">Location</h2>
          <p>Average rating:</p><h2 id="rating">-</h2>
 
-
-  			  <label for = "check in">Check in: </label>
-  			  <input type = "date" id = "checkin" id = "check in"><br>
-
-  			  <label for = "check out">Check out: </label>
-  			  <input type = "date" id = "checkout" id = "check out"><br>
-
-          <input type = "submit" value = "Book" onClick="book();"><br>
-
-          <label id="error"></label>
-        </div>
+      </div>
 
         <p id="comments"></p>
 
        <script>
          if(sessionStorage.login == 0)
    			{
-   				document.getElementById("optional").innerHTML = "";
+          
+          document.getElementById("login").setAttribute("href", "homepage.html?logout");
+  				document.getElementById("login").innerHTML = "Logout";
+          document.getElementById("signup").innerHTML = "";
+
+  				var div = document.getElementById("navbar2");
+  				div.innerHTML += '<a href="upload-apartment.html">Upload apartment</a>';
+  				div.innerHTML += '<a href="profile.html">My profile</a>';
    			}
+        else if (sessionStorage.login == 1){
+          document.getElementById("extra").innerHTML +=
+          '<label class="optional" for = "check in">Check in: </label>' +
+  			  '<input class="optional" type = "date" id = "checkin"><br>' +
+
+  			  '<label class="optional" for = "check out">Check out: </label>' +
+  			  '<input class="optional" type = "date" id = "checkout"><br>' +
+
+          '<input class="optional" type = "submit" value = "Book" onClick="book();"><br>' +
+          '<label id="error"></label>'
+        }
         </script>
 
        <script>
@@ -57,7 +64,8 @@
     			xmlhttp.onreadystatechange = function()
           {
      			  if (this.readyState == 4 && this.status == 200)
-               apartment = JSON.parse(this.responseText);
+            {
+             apartment = JSON.parse(this.responseText);
 
              document.getElementById("photo").setAttribute("src",
              '../img/apartments/' + idapartment + '.' + apartment[0].extension);
@@ -67,6 +75,7 @@
              document.getElementById("description").innerHTML = apartment[0].description;
 
              document.getElementById("location").innerHTML = apartment[0].location;
+           }
           };
 
           xmlhttp.open("GET", "../php/return-apartment.php?q=" + idapartment, true);
@@ -90,39 +99,37 @@
 
          <script>
 
-         xmlhttp = new XMLHttpRequest();
+           xmlhttp = new XMLHttpRequest();
 
-         var comments_html = "";
+           var comments_html = "";
 
-         xmlhttp.onreadystatechange = function()
-          {
-            if (this.readyState == 4 && this.status == 200)
-              comments = JSON.parse(this.responseText);
+           xmlhttp.onreadystatechange = function()
+            {
+              if (this.readyState == 4 && this.status == 200)
+                comments = JSON.parse(this.responseText);
 
-              for (x in apartments)
-              {
-                comments_html +=
-                  '<div class="gallery">' +
-                     '<div class="container">' +
-                      '<a href="apartment.html?' + apartments[x].idapartment + '"> ' +
-                       '<img src="../img/apartments/' +
-                       + apartments[x].idapartment + '.' + apartments[x].extension + '" ' +
-                       'class="grid-image">' +
-                         '<div class="middle">' +
-                           '<div class="image-text">' + apartments[x].title + '</div>' +
-                         '</div>' +
-                       '</a>' +
-                     '</div>' +
-                   '</div>';
-   					 }
+                for (x in comments)
+                {
+                  comments_html +=
+                    '<div class="gallery">' +
+                       '<div class="container">' +
+                        '<a href="apartment.html?' + apartments[x].idapartment + '"> ' +
+                         '<img src="../img/apartments/' +
+                         + apartments[x].idapartment + '.' + apartments[x].extension + '" ' +
+                         'class="grid-image">' +
+                           '<div class="middle">' +
+                             '<div class="image-text">' + apartments[x].title + '</div>' +
+                           '</div>' +
+                         '</a>' +
+                       '</div>' +
+                     '</div>';
+     					 }
 
-   					 document.getElementById("comments").innerHTML = coments_html;
-   				 }
+     					 document.getElementById("comments").innerHTML = comments_html;
+     				 };
 
-          };
-
-        xmlhttp.open("GET", "../php/return-comments.php?q=" + idapartment, true);
-        xmlhttp.send();
+          xmlhttp.open("GET", "../php/return-comments.php?q=" + idapartment, true);
+          xmlhttp.send();
 
         </script>
 

@@ -29,14 +29,12 @@
            <button onclick = "showHistory();" > History </button>
            <button onclick = "showUpcoming();" > Upcoming </button>
            <button onclick = "showClientApartments();" > My Apartments </button>
-
-		   <p id="history"></p>
-		   <p id="upcoming"></p>
-		   <p id="myapartments"></p>
-
-	      </div>
          </div>
        </div>
+     </div>
+        <p id="extra"></p>
+
+
 
        <script>
       	   document.getElementById("pic").setAttribute("src",'../img/clients/' + sessionStorage.idClient + '.' + sessionStorage.extension);
@@ -49,7 +47,7 @@
          <script>
     		   function showHistory() {
 
-  		       var xmlhttp, apartments, count, out = "";
+  		       var xmlhttp, apartments, count, extra = "";
 
     			   xmlhttp = new XMLHttpRequest();
 
@@ -59,24 +57,24 @@
     				   if (this.readyState == 4 && this.status == 200)
                {
                  apartments = JSON.parse(this.responseText);
-                 out = "<table>";
+                 extra = '<div class="profile"><table>';
 
                  count=1;
 
                    for(x in apartments)
                    {
-                       out +=
+                       extra +=
                          "<tr><td>" +
                              apartments[x].title +
                         "</td><td>" +
                              apartments[x].checkin +
                         "</td><td>" +
-                             apartments[x].checkout +
+                             apartments[x].checkextra +
                         "</td><td>";
 
                         if(apartments[x].rating==null)
                         {
-                          out +=
+                          extra +=
 
                              '<span class="fa fa-star" id="1" onclick="rate(' +
                                 + apartments[x].idrenting + ', this.id);"></span>' +
@@ -89,7 +87,7 @@
                              '<span class="fa fa-star" id="5" onclick="rate(' +
                                 + apartments[x].idrenting + ', this.id);"></span>' +
 
-                            '<textarea id=' + count + '></textarea>' +
+                            '<textarea id="' + count + 't"></textarea>' +
 
                             '<button value=' + count + ' id="' + count + 'b" onclick="insertRating(this.id);">Press to submit rating</button>';
 
@@ -97,17 +95,18 @@
                         }
                         else
                         {
-                          out += apartments[x].rating + " stars";
+                          extra += apartments[x].rating + " stars";
                         }
 
-                        out += '</td></tr>';
+                        extra += '</td></tr>';
                     }
 
-                 out += "</table>";
+                 extra += "</table></div>";
 
-               document.getElementById("history").innerHTML = out;
+               document.getElementById("extra").innerHTML = extra;
     				}
     			};
+
     				xmlhttp.open("GET", "../php/return-history.php?q=" + sessionStorage.idClient, true);
   			    xmlhttp.send();
   		   }
@@ -123,7 +122,7 @@
         //     };
         // }
 
-         function rate(idrenting,rating)
+         function rate(idrenting, rating)
          {
            sessionStorage.idrenting = idrenting;
            sessionStorage.rating = rating;
@@ -134,8 +133,8 @@
             if(sessionStorage.rating != null)
             {
               var id=document.getElementById(i).value;
+              id += "t";
               var comment = document.getElementById(id).value;
-              console.log(id);
 
               var xmlhttp, apartment;
 
@@ -153,6 +152,10 @@
                       alert("OK");
                     }
                };
+
+               console.log("../php/submit-rating.php?idr=" + sessionStorage.idrenting
+               + "&rating=" + sessionStorage.rating
+               + "&comment=" + comment);
 
               xmlhttp.open("GET", "../php/submit-rating.php?idr=" + sessionStorage.idrenting
               + "&rating=" + sessionStorage.rating

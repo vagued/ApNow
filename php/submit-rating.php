@@ -14,8 +14,9 @@ if(empty($comment))
 }
 
 else {
+
   $result = db_query("UPDATE rentings
-    SET rating=$rating, comment=$comment
+    SET rating=$rating, comment='$comment'
     WHERE idrenting=$idrenting");
 }
 
