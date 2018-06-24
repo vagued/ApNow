@@ -18,6 +18,9 @@ $extension = pathinfo($_FILES["pic"]["name"],PATHINFO_EXTENSION);
 $result = db_query("INSERT INTO apartments (idclient, title, location, description, checkin, checkout, extension)
   VALUES ('$idclient','$title','$location','$description','$checkin','$checkout','$extension')");
 
+  echo("INSERT INTO apartments (idclient, title, location, description, checkin, checkout, extension)
+    VALUES ('$idclient','$title','$location','$description','$checkin','$checkout','$extension')");
+
 if($result === false)
     echo "Failed to insert #1\n";
 // } else {

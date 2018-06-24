@@ -38,7 +38,7 @@
 			{
 				document.getElementById("login").setAttribute("href", "homepage.html?logout");
 				document.getElementById("login").innerHTML = "Logout";
-        document.getElementById("signup").innerHTML = "";
+        document.getElementById("signup").outerHTML = "";
 
 				var div = document.getElementById("navbar2");
 				div.innerHTML += '<a href="upload-apartment.html">Upload apartment</a>';
@@ -57,33 +57,41 @@
 
 				 if (this.readyState == 4 && this.status == 200) {
 
-           apartments = JSON.parse(this.responseText);
-
-					 for (x in apartments)
+           if(this.responseText==0)
            {
-             grid_html +=
-               '<div class="gallery">' +
-                  '<div class="container">' +
-                   '<a href="apartment.html?' + apartments[x].idapartment + '"> ' +
-                    '<img src="../img/apartments/' +
-                    + apartments[x].idapartment + '.' + apartments[x].extension + '" ' +
-                    'class="grid-image">' +
-                      '<div class="middle">' +
-                        '<div class="image-text">' + apartments[x].title + '</div>' +
-                      '</div>' +
-                    '</a>' +
-                  '</div>' +
-                '</div>';
-					 }
+              document.getElementById("apartments").innerHTML = "";
+            }
 
-					 document.getElementById("apartments").innerHTML = grid_html;
-				 }
+            else
+            {
+             apartments = JSON.parse(this.responseText);
+
+  					 for (x in apartments)
+             {
+               grid_html +=
+                 '<div class="gallery">' +
+                    '<div class="container">' +
+                     '<a href="apartment.html?' + apartments[x].idapartment + '"> ' +
+                      '<img src="../img/apartments/' +
+                      + apartments[x].idapartment + '.' + apartments[x].extension + '" ' +
+                      'class="grid-image">' +
+                        '<div class="middle">' +
+                          '<div class="image-text">' + apartments[x].title + '</div>' +
+                        '</div>' +
+                      '</a>' +
+                    '</div>' +
+                  '</div>';
+  					 }
+
+  					 document.getElementById("apartments").innerHTML = grid_html;
+  				 }
+         }
 			 };
 
 			 xmlhttp.open("GET", "../php/return-apartments.php?q=" + location, true);
 			 xmlhttp.send();
-     }
-		 </script>
+   }
+	 </script>
 
 
  <!-- lista me ta kataxorimena katalimata -->

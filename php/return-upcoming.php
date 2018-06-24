@@ -8,7 +8,7 @@ $result = db_query("SELECT title, rentings.checkin, rentings.checkout
 	FROM apartments, rentings
 	WHERE rentings.idclient=$idclient
 		AND rentings.idapartment=apartments.idapartment
-		AND apartments.checkin>='" . date("Y/m/d") . "'");
+		AND rentings.checkin>='" . date("Y/m/d") . "'");
 
 $rows = mysqli_num_rows($result);
 $myArray = array();

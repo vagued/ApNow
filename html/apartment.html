@@ -37,7 +37,7 @@
 
           document.getElementById("login").setAttribute("href", "homepage.html?logout");
   				document.getElementById("login").innerHTML = "Logout";
-          document.getElementById("signup").innerHTML = "";
+          document.getElementById("signup").outerHTML = "";
 
   				var div = document.getElementById("navbar2");
   				div.innerHTML += '<a href="upload-apartment.html">Upload apartment</a>';
@@ -91,7 +91,19 @@
     			xmlhttp.onreadystatechange = function()
           {
      			  if (this.readyState == 4 && this.status == 200)
-             document.getElementById("rating").innerHTML = Math.round(this.responseText * 100) / 100;
+            {
+              if(this.responseText==0)
+              {
+                document.getElementById("rating").innerHTML =
+                  "No ratings available";
+              }
+
+              else
+              {
+                document.getElementById("rating").innerHTML =
+                  Math.round(this.responseText * 100) / 100;
+              }
+            }
           };
 
          xmlhttp.open("GET", "../php/return-avg-rating.php?q=" + idapartment, true);

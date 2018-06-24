@@ -10,7 +10,7 @@ $result = db_query("SELECT AVG(rentings.rating) FROM rentings
 $sum = mysqli_fetch_assoc($result);
 
 if($sum["AVG(rentings.rating)"]===null)
-	echo 'No ratings';
+	echo 0;
 else
 	echo $sum["AVG(rentings.rating)"];
 

@@ -101,10 +101,6 @@ input{
   outline:none;
 }
 
-#email {
-  margin-left: 13%;
-}
-
 #error
 {
 	color: red;

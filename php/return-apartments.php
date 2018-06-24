@@ -15,7 +15,7 @@ $rows = mysqli_num_rows($result);
 $myArray = array();
 
 if($rows==0)
-	echo 'There was an error';
+	echo 0;
 else
 {
 	while($row = mysqli_fetch_array($result))
