@@ -69,7 +69,7 @@
                         "</td><td>" +
                              apartments[x].checkin +
                         "</td><td>" +
-                             apartments[x].checkextra +
+                             apartments[x].checkout +
                         "</td><td>";
 
                         if(apartments[x].rating==null)
@@ -111,16 +111,16 @@
   			    xmlhttp.send();
   		   }
 
-         for(i=1;i<=count;i++)
-         {
-           document.getElementById(i).input.addEventListener("keyup", function(event)
-           {
-                event.preventDefault();
-                if (event.keyCode === 13) {
-                  document.getElemendById.(i+"b").click();
-                }
-            };
-        }
+        //  for(i=1;i<=count;i++)
+        //  {
+        //    document.getElementById(i).input.addEventListener("keyup", function(event)
+        //    {
+        //         event.preventDefault();
+        //         if (event.keyCode === 13) {
+        //           document.getElemendById.(i+"b").click();
+        //         }
+        //     };
+        // }
 
          function rate(idrenting, rating)
          {
