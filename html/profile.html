@@ -18,7 +18,7 @@
            </div>
     	</header>
 
-	   <div class = "main">
+	   <!-- <div class = "main"> -->
 		   <div class="profile">
          <img id = "pic" src="http://image005.flaticon.com/1/svg/145/145867.svg" />
          <h1 id = "username"> Username</h1>
@@ -31,7 +31,7 @@
            <button onclick = "showClientApartments();" > My Apartments </button>
          </div>
        </div>
-     </div>
+     <!-- </div> -->
         <p id="extra"></p>
 
 
@@ -111,16 +111,16 @@
   			    xmlhttp.send();
   		   }
 
-        //  for(i=1;i<=count;i++)
-        //  {
-        //    document.getElementById(i).input.addEventListener("keyup", function(event)
-        //    {
-        //         event.preventDefault();
-        //         if (event.keyCode === 13) {
-        //           document.getElemendById.(i+"b").click();
-        //         }
-        //     };
-        // }
+         for(i=1;i<=count;i++)
+         {
+           document.getElementById(i).input.addEventListener("keyup", function(event)
+           {
+                event.preventDefault();
+                if (event.keyCode === 13) {
+                  document.getElemendById.(i+"b").click();
+                }
+            };
+        }
 
          function rate(idrenting, rating)
          {

@@ -8,13 +8,14 @@
     </head>
     <body id = "def">
       <header>
-         <div class = "navbar">
-                  <a href = "" id = "logo"> <img src = "../img/logo.png"> </a>
-                  <a href = "login.html" id = "login"> Login </a>
-                  <a href = "signup.html" id = "signup"> Sign Up </a>
-          <div id="navbar2"></div>
+    	   <div class = "navbar">
+                	<a href = "homepage.html" id = "logo"> <img src = "../img/logo.png"> </a>
+                	<a href = "login.html" id = "login"> Login </a>
+                	<a href = "signup.html" id = "signup"> Sign Up </a>
+					<div id="navbar2"></div>
            </div>
-      </header>
+
+    	</header>
 
 		   <div id="extra" class="apartment">
 
@@ -23,15 +24,16 @@
          <h2 id="description">Description </h2>
          <h2 id="location">Location</h2>
          <p>Average rating:</p><h2 id="rating">-</h2>
+         <label id="info"></label>
 
       </div>
 
         <p id="comments"></p>
 
        <script>
-         if(sessionStorage.login == 0)
-   			{
-          
+
+        if (sessionStorage.login == 1){
+
           document.getElementById("login").setAttribute("href", "homepage.html?logout");
   				document.getElementById("login").innerHTML = "Logout";
           document.getElementById("signup").innerHTML = "";
@@ -39,8 +41,7 @@
   				var div = document.getElementById("navbar2");
   				div.innerHTML += '<a href="upload-apartment.html">Upload apartment</a>';
   				div.innerHTML += '<a href="profile.html">My profile</a>';
-   			}
-        else if (sessionStorage.login == 1){
+
           document.getElementById("extra").innerHTML +=
           '<label class="optional" for = "check in">Check in: </label>' +
   			  '<input class="optional" type = "date" id = "checkin"><br>' +
@@ -49,7 +50,7 @@
   			  '<input class="optional" type = "date" id = "checkout"><br>' +
 
           '<input class="optional" type = "submit" value = "Book" onClick="book();"><br>' +
-          '<label id="error"></label>'
+          '<label id="error"></label><br>'
         }
         </script>
 
@@ -106,26 +107,43 @@
            xmlhttp.onreadystatechange = function()
             {
               if (this.readyState == 4 && this.status == 200)
-                comments = JSON.parse(this.responseText);
 
-                for (x in comments)
-                {
-                  comments_html +=
-                    '<div class="gallery">' +
-                       '<div class="container">' +
-                        '<a href="apartment.html?' + apartments[x].idapartment + '"> ' +
-                         '<img src="../img/apartments/' +
-                         + apartments[x].idapartment + '.' + apartments[x].extension + '" ' +
-                         'class="grid-image">' +
-                           '<div class="middle">' +
-                             '<div class="image-text">' + apartments[x].title + '</div>' +
-                           '</div>' +
-                         '</a>' +
-                       '</div>' +
-                     '</div>';
-     					 }
+                if(this.responseText==0)
 
-     					 document.getElementById("comments").innerHTML = comments_html;
+                  document.getElementById("info").innerHTML = "No comments for this apartment";
+
+                else {
+
+                  comments = JSON.parse(this.responseText);
+
+                  for (x in comments)
+                  {
+                    comments_html +=
+
+                    '<div class="comments-container">' +
+                      '<ul id="comments-list" class="comments-list">' +
+                        '<li>' +
+                          '<div class="comment-main-level">' +
+
+                            '<div class="comment-avatar">' +
+                            '<img src="../img/clients/' + comments[x].idclient + '.' +
+                              + comments[x].extension + '"></div>' +
+
+                            '<div class="comment-box">' +
+                              '<div class="comment-head">' +
+                                '<h6 class="comment-name">' + comments[x].username +'</h6>' +
+                              '</div>' +
+                              '<div class="comment-content">' + comments[x].comment +
+                              '</div>' +
+                            '</div>' +
+                          '</div>' +
+                        '</li>' +
+                      '</ul>' +
+                    '</div>'
+       					 }
+
+       					 document.getElementById("comments").innerHTML = comments_html;
+               }
      				 };
 
           xmlhttp.open("GET", "../php/return-comments.php?q=" + idapartment, true);
