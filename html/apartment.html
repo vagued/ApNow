@@ -91,7 +91,7 @@
     			xmlhttp.onreadystatechange = function()
           {
      			  if (this.readyState == 4 && this.status == 200)
-             document.getElementById("rating").innerHTML = this.responseText;
+             document.getElementById("rating").innerHTML = Math.round(this.responseText * 100) / 100;
           };
 
          xmlhttp.open("GET", "../php/return-avg-rating.php?q=" + idapartment, true);
@@ -122,24 +122,8 @@
                     comments_html +=
 
                     '<div class="comment">' +
-                      '<ul id="comments-list" class="comments-list">' +
-                        '<li>' +
-                          '<div class="comment-main-level">' +
-
-                            '<div class="comment-avatar">' +
-                            '<img src="../img/clients/' + comments[x].idclient + '.' +
-                              + comments[x].extension + '"></div>' +
-
-                            '<div class="comment-box">' +
-                              '<div class="comment-head">' +
-                                '<h6 class="comment-name">' + comments[x].username +'</h6>' +
-                              '</div>' +
-                              '<div class="comment-content">' + comments[x].comment +
-                              '</div>' +
-                            '</div>' +
-                          '</div>' +
-                        '</li>' +
-                      '</ul>' +
+                      '<label>“' + comments[x].comment + '”</label>' +
+                      '<h4>By the user: <i>' + comments[x].username +'</i></h4><br>' +
                     '</div>'
        					 }
 

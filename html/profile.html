@@ -21,14 +21,14 @@
 	   <!-- <div class = "main"> -->
 		   <div class="profile">
          <img id = "pic" src="http://image005.flaticon.com/1/svg/145/145867.svg" />
-         <h1 id = "username"> Username</h1>
-         <h2 id = "firstname"> First name: John </h2>
-         <h2 id = "lastname"> Last name: Doe</h2>
-         <h2 id = "email"> Email: example@domain.com</h2>
+         <h1 id = "username">Username</h1>
+         <h2 id = "firstname">First name: John </h2>
+         <h2 id = "lastname">Last name: Doe</h2>
+         <h2 id = "email">Email: example@domain.com</h2>
 			   <div id = "profile-navbar">
-           <button onclick = "showHistory();" > History </button>
-           <button onclick = "showUpcoming();" > Upcoming </button>
-           <button onclick = "showClientApartments();" > My Apartments </button>
+           <button onclick = "showHistory();" >History </button>
+           <button onclick = "showUpcoming();" >Upcoming </button>
+           <button onclick = "showClientApartments();" >My Apartments </button>
          </div>
          <label id="error"></label>
        </div>
@@ -58,15 +58,18 @@
 
                  if(this.responseText==0)
                  {
-                   document.getElementById("extra").innerHtml
+                   document.getElementById("extra").innerHTML
                     = "";
 
-                   document.getElementById("error").innerHtml
+                   document.getElementById("error").innerHTML
                      = "No apartments in this category";
                  }
 
                  else
                  {
+                   document.getElementById("error").innerHTML
+                     = "";
+
                    apartments = JSON.parse(this.responseText);
                    extra = '<div class="profile"><table>';
 
@@ -202,17 +205,15 @@
             {
               if(this.responseText==0)
               {
-                document.getElementById("extra").innerHtml
-                 = "";
+                document.getElementById("extra").innerHTML = "";
 
-                document.getElementById("error").innerHtml
-                  = "No apartments in this category";
+                document.getElementById("error").innerHTML = "No apartments in this category";
               }
 
               else
               {
 
-                document.getElementById("error").innerHtml
+                document.getElementById("error").innerHTML
                   = "";
 
                 apartments = JSON.parse(this.responseText);
@@ -258,17 +259,17 @@
             {
               if(this.responseText==0)
               {
-                document.getElementById("extra").innerHtml
+                document.getElementById("extra").innerHTML
                  = "";
 
-                document.getElementById("error").innerHtml
+                document.getElementById("error").innerHTML
                   = "No apartments in this category";
               }
 
               else
               {
 
-                document.getElementById("error").innerHtml
+                document.getElementById("error").innerHTML
                   = "";
 
                 apartments = JSON.parse(this.responseText);
