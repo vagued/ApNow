@@ -30,11 +30,10 @@
            <button onclick = "showUpcoming();" > Upcoming </button>
            <button onclick = "showClientApartments();" > My Apartments </button>
          </div>
+         <label id="error"></label>
        </div>
      <!-- </div> -->
         <p id="extra"></p>
-
-
 
        <script>
       	   document.getElementById("pic").setAttribute("src",'../img/clients/' + sessionStorage.idClient + '.' + sessionStorage.extension);
@@ -56,55 +55,65 @@
 
     				   if (this.readyState == 4 && this.status == 200)
                {
-                 apartments = JSON.parse(this.responseText);
-                 extra = '<div class="profile"><table>';
 
-                 count=1;
+                 if(this.responseText==0)
+                 {
+                   document.getElementById("error").innerHtml
+                     = "No apartments in this category";
+                 }
 
-                   for(x in apartments)
-                   {
-                       extra +=
-                         "<tr><td>" +
-                             apartments[x].title +
-                        "</td><td>" +
-                             apartments[x].checkin +
-                        "</td><td>" +
-                             apartments[x].checkout +
-                        "</td><td>";
+                 else
+                 {
+                   apartments = JSON.parse(this.responseText);
+                   extra = '<div class="profile"><table>';
 
-                        if(apartments[x].rating==null)
-                        {
-                          extra +=
+                   count=1;
 
-                             '<span class="fa fa-star" id="1" onclick="rate(' +
-                                + apartments[x].idrenting + ', this.id);"></span>' +
-                            '<span class="fa fa-star" id="2" onclick="rate(' +
-                                 + apartments[x].idrenting + ', this.id);"></span>' +
-                             '<span class="fa fa-star" id="3" onclick="rate(' +
-                                + apartments[x].idrenting + ', this.id);"></span>' +
-                            '<span class="fa fa-star" id="4" onclick="rate(' +
-                                 + apartments[x].idrenting + ', this.id);"></span>' +
-                             '<span class="fa fa-star" id="5" onclick="rate(' +
-                                + apartments[x].idrenting + ', this.id);"></span>' +
+                     for(x in apartments)
+                     {
+                         extra +=
+                           "<tr><td>" +
+                               apartments[x].title +
+                          "</td><td>" +
+                               apartments[x].checkin +
+                          "</td><td>" +
+                               apartments[x].checkout +
+                          "</td><td>";
 
-                            '<textarea id="' + count + 't"></textarea>' +
+                          if(apartments[x].rating==null)
+                          {
+                            extra +=
 
-                            '<button value=' + count + ' id="' + count + 'b" onclick="insertRating(this.id);">Press to submit rating</button>';
+                               '<span class="fa fa-star" id="1" onclick="rate(' +
+                                  + apartments[x].idrenting + ', this.id);"></span>' +
+                              '<span class="fa fa-star" id="2" onclick="rate(' +
+                                   + apartments[x].idrenting + ', this.id);"></span>' +
+                               '<span class="fa fa-star" id="3" onclick="rate(' +
+                                  + apartments[x].idrenting + ', this.id);"></span>' +
+                              '<span class="fa fa-star" id="4" onclick="rate(' +
+                                   + apartments[x].idrenting + ', this.id);"></span>' +
+                               '<span class="fa fa-star" id="5" onclick="rate(' +
+                                  + apartments[x].idrenting + ', this.id);"></span>' +
 
-                            count++;
-                        }
-                        else
-                        {
-                          extra += apartments[x].rating + " stars";
-                        }
+                              '<textarea id="' + count + 't"></textarea>' +
 
-                        extra += '</td></tr>';
-                    }
+                              '<button value=' + count + ' id="' + count + 'b" onclick="insertRating(this.id);">Press to submit rating</button>';
 
-                 extra += "</table></div>";
+                              count++;
+                          }
+                          else
+                          {
+                            extra += apartments[x].rating + " stars";
+                          }
 
-               document.getElementById("extra").innerHTML = extra;
-    				}
+                          extra += '</td></tr>';
+                      }
+
+                   extra += "</table></div>";
+
+                 document.getElementById("extra").innerHTML = extra;
+      				}
+            }
     			};
 
     				xmlhttp.open("GET", "../php/return-history.php?q=" + sessionStorage.idClient, true);
@@ -145,11 +154,11 @@
           			  if (this.readyState == 4 && this.status == 200)
                     if(this.responseText==0)
                     {
-                      alert("Some error");
+                      alert("The rating could be submited");
                     }
                     else
                     {
-                      alert("OK");
+                      alert("The rating was submited successfully");
                     }
                };
 
@@ -172,6 +181,89 @@
             alert("Please select a rating first");
           }
         }
+
+      </script>
+
+      <script>
+
+        function showUpcoming() {
+
+          var xmlhttp, apartments, extra = "";
+
+          xmlhttp = new XMLHttpRequest();
+
+          xmlhttp.onreadystatechange = function()
+          {
+
+            if (this.readyState == 4 && this.status == 200)
+            {
+              if(this.responseText==0)
+              {
+                document.getElementById("error").innerHtml
+                  = "No apartments in this category";
+              }
+
+              else
+              {
+
+                document.getElementById("error").innerHtml
+                  = "";
+
+                apartments = JSON.parse(this.responseText);
+                extra = '<div class="profile"><table>';
+
+                count=1;
+
+                  for(x in apartments)
+                  {
+                      extra +=
+                        "<tr><td>" +
+                            apartments[x].title +
+                       "</td><td>" +
+                            apartments[x].checkin +
+                       "</td><td>" +
+                            apartments[x].checkout +
+                       "</td><td>";
+
+                       if(apartments[x].rating==null)
+                       {
+                         extra +=
+
+                            '<span class="fa fa-star" id="1" onclick="rate(' +
+                               + apartments[x].idrenting + ', this.id);"></span>' +
+                           '<span class="fa fa-star" id="2" onclick="rate(' +
+                                + apartments[x].idrenting + ', this.id);"></span>' +
+                            '<span class="fa fa-star" id="3" onclick="rate(' +
+                               + apartments[x].idrenting + ', this.id);"></span>' +
+                           '<span class="fa fa-star" id="4" onclick="rate(' +
+                                + apartments[x].idrenting + ', this.id);"></span>' +
+                            '<span class="fa fa-star" id="5" onclick="rate(' +
+                               + apartments[x].idrenting + ', this.id);"></span>' +
+
+                           '<textarea id="' + count + 't"></textarea>' +
+
+                           '<button value=' + count + ' id="' + count + 'b" onclick="insertRating(this.id);">Press to submit rating</button>';
+
+                           count++;
+                       }
+                       else
+                       {
+                         extra += apartments[x].rating + " stars";
+                       }
+
+                       extra += '</td></tr>';
+                   }
+
+                extra += "</table></div>";
+
+              document.getElementById("extra").innerHTML = extra;
+         }
+        }
+       };
+
+         xmlhttp.open("GET", "../php/return-history.php?q=" + sessionStorage.idClient, true);
+         xmlhttp.send();
+      }
 
       </script>
 
