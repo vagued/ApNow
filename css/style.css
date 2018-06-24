@@ -339,14 +339,16 @@ select-items {
 table,tr,td {
     border-collapse: collapse;
     border: 1px solid black;
-    width: 50%;
+    /* width: 70%; */
     text-align: center;
 		margin: 0 auto;
+		padding: 25px 25px 25px 25px;
 }
 
 
 tr:nth-child(even) {
 	background-color: #f2f2f2;
+	color: black;
 }
 
 tr:hover {
@@ -354,9 +356,9 @@ tr:hover {
 	border: 1px solid black;
 }
 
-td:nth-child(4){
+/* td:nth-child(4){
 	padding: 5px 5px 5px 10px;
-}
+} */
 
 #location{
     border:2px solid white;
@@ -366,8 +368,6 @@ td:nth-child(4){
     padding:16px;
     font-size: 16px;
     display:inline-block;
-
-}
 
 }
 
