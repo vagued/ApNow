@@ -21,8 +21,8 @@
 
          <img id="photo" src="https://image.flaticon.com/icons/svg/149/149064.svg" />
          <h1 id="title">Title</h1>
-         <h2 id="description">Description </h2>
          <h2 id="location">Location</h2>
+         <p id="description">Description</p>
          <p>Average rating:</p><h2 id="rating">-</h2>
          <label id="info"></label>
          <br>
@@ -132,11 +132,17 @@
                   for (x in comments)
                   {
                     comments_html +=
-
                     '<div class="comment">' +
-                      '<label>“' + comments[x].comment + '”</label>' +
+                      '<label>“' + comments[x].comment + '”</label><br><br>';
+
+                      for(i=1;i<=comments[x].rating;i++)
+                      {
+                        comments_html += '<span class="fa fa-star"></span>';
+                      }
+
+                      comments_html +=
                       '<h4>By the user: <i>' + comments[x].username +'</i></h4><br>' +
-                    '</div>'
+                    '</div>';
        					 }
 
        					 document.getElementById("comments").innerHTML = comments_html;
