@@ -1,6 +1,3 @@
-CREATE USER 'ApNowUser'@'localhost' IDENTIFIED BY 'Apass!@#';
-GRANT ALL PRIVILEGES ON apnow.* TO 'ApNowUser'@'localhost';
-
 CREATE DATABASE  IF NOT EXISTS `apnow` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `apnow`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
@@ -23,6 +20,9 @@ USE `apnow`;
 --
 -- Table structure for table `apartments`
 --
+
+CREATE USER 'ApNowUser'@'localhost' IDENTIFIED BY 'Apass!@#';
+GRANT ALL PRIVILEGES ON apnow.* TO 'ApNowUser'@'localhost';
 
 DROP TABLE IF EXISTS `apartments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
